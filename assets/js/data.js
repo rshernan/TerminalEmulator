@@ -1,3 +1,5 @@
+export {data, createDocument, createFolder, deleteFolderOrDocument, goToPathDirection, moveDocumentOrFolder};
+
 var data={}
 
 if (localStorage.getItem('data')){
