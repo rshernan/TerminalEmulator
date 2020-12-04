@@ -22,7 +22,7 @@ function createFolder(path, name){
         folder[name]={};
         saveDataToLocalStorage();
     }else{
-        alert('Path not found');
+        alert(pathToString(path)+' path not found');
     }
 }
 function createDocument(path, name, content){
@@ -31,7 +31,7 @@ function createDocument(path, name, content){
         folder[name]=content;
         saveDataToLocalStorage();
     }else{
-        alert('Path not found');
+        alert(pathToString(path)+' path not found');
     }
 }
 
@@ -42,7 +42,7 @@ function deleteFolderOrDocument(path, name){
         delete folder[name]
         saveDataToLocalStorage();
     }else{
-        alert('Path not found');
+        alert(pathToString(path)+' path not found');
     }
 }
 
@@ -69,7 +69,18 @@ function moveDocumentOrFolder(actualPath, futurePath, itemName){
         let item= actualFolder[itemName];
         delete actualFolder[itemName];
         futureFolder[itemName]=item;
+    }else if(actualFolder){
+        alert(pathToString(actualPath)+' path not found');
     }else{
-        alert('Path not found');
+        alert(pathToString(futurePath)+' path not found');
     }
+}
+
+function pathToString(path){
+    let string='';
+
+    path.forEach(folder=>{
+        string+='/'+folder;
+    })
+    return string;
 }
