@@ -17,33 +17,57 @@ function saveDataToLocalStorage(){
 }
 
 function createFolder(path, name){
+    //returns a string describing the error
+    // if it has been succesful retrns false
     let folder=goToPathDirection(path);
+    let error=false;
     if(folder){
-        folder[name]={};
-        saveDataToLocalStorage();
+        if(!folder[name]){
+            folder[name]={};
+            saveDataToLocalStorage();
+        }else{
+            error=name+' already exist in '+pathToString(path);
+        }
     }else{
-        alert(pathToString(path)+' path not found');
+        error=pathToString(path)+' path not found';
     }
+    return error;
 }
+
 function createDocument(path, name, content){
+    //returns a string describing the error
+    // if it has been succesful retrns false
     let folder=goToPathDirection(path);
+    let error=false;
     if(folder){
-        folder[name]=content;
-        saveDataToLocalStorage();
+        if(!folder[name]){
+            folder[name]=content;
+            saveDataToLocalStorage(); 
+        }else{
+            error=name+' already exist in '+pathToString(path);
+        }
     }else{
-        alert(pathToString(path)+' path not found');
+        error=pathToString(path)+' path not found';
     }
+    return error;
 }
 
 function deleteFolderOrDocument(path, name){
+    //returns a string describing the error
+    // if it has been succesful retrns false
     let folder=goToPathDirection(path);
-
+    let error=false;
     if(folder){
-        delete folder[name]
-        saveDataToLocalStorage();
+        if(folder[name]){
+            delete folder[name];
+            saveDataToLocalStorage(); 
+        }else{
+            error=name+' do not exist in '+pathToString(path);
+        }
     }else{
-        alert(pathToString(path)+' path not found');
+        error=pathToString(path)+' path not found';
     }
+    return error;
 }
 
 function goToPathDirection(path){
@@ -63,20 +87,28 @@ function goToPathDirection(path){
 }
 
 function moveDocumentOrFolder(actualPath, futurePath, itemName){
+    //returns a string describing the error
+    // if it has been succesful retrns false
     let actualFolder=goToPathDirection(actualPath);
     let futureFolder=goToPathDirection(futurePath);
+    let error=false;
+
     if(actualFolder&&futureFolder){
         let item= actualFolder[itemName];
         delete actualFolder[itemName];
         futureFolder[itemName]=item;
+        saveDataToLocalStorage();
     }else if(actualFolder){
-        alert(pathToString(actualPath)+' path not found');
+        error=pathToString(actualPath)+' path not found';
     }else{
-        alert(pathToString(futurePath)+' path not found');
+        error=pathToString(futurePath)+' path not found';
     }
+    return error;
 }
 
+
 function pathToString(path){
+    //returns the string with the path
     let string='';
 
     path.forEach(folder=>{
