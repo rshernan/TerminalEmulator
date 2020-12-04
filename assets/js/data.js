@@ -25,8 +25,17 @@ function createFolder(path, name){
         alert('Path not found');
     }
 }
+function createDocument(path, name, content){
+    let folder=goToPathDirection(path);
+    if(folder){
+        folder[name]=content;
+        saveDataToLocalStorage();
+    }else{
+        alert('Path not found');
+    }
+}
 
-function deleteFolder(path, name){
+function deleteFolderOrDocument(path, name){
     let folder=goToPathDirection(path);
 
     if(folder){
