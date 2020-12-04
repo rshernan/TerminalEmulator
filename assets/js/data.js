@@ -61,3 +61,15 @@ function goToPathDirection(path){
 
     return folder;
 }
+
+function moveDocumentOrFolder(actualPath, futurePath, itemName){
+    let actualFolder=goToPathDirection(actualPath);
+    let futureFolder=goToPathDirection(futurePath);
+    if(actualFolder&&futureFolder){
+        let item= actualFolder[itemName];
+        delete actualFolder[itemName];
+        futureFolder[itemName]=item;
+    }else{
+        alert('Path not found');
+    }
+}
