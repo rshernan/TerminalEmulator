@@ -1,10 +1,26 @@
-function addSpan(key){
-    if(key.keyCode === 13){
-        document.querySelector("span").insertAdjacentHTML("afterend", `
-            <div class="path">../Desktop/MSE/Projects</div>
-            <div class="console_input"><img src="assets/svg/angulo-de-flecha-derecha.svg">cd TerminalEmulator</div>
-            <div class="console_output">../Desktop/MSE/Projects/TerminalEmulator</div>`);
+export { addSpan, writedLine };
+
+let writedLine = "";
+let historyCommands = [];
+function addSpan(key) {
+    switch (key.keyCode) {
+        case 13:
+            document.querySelector(
+                ".console__output"
+            ).innerHTML = document.querySelector(".writed__input").innerHTML;
+            historyCommands.push(
+                document.querySelector(".writed__input").innerHTML
+            );
+            document.querySelector("span").insertAdjacentHTML(
+                "afterend",
+                `
+                <div class="actual__path">../Desktop/MSE/Projects</div>
+                <div class="console__input"><img src="assets/svg/angulo-de-flecha-derecha.svg">
+                  <div class="writed__input"></div>
+                </div>
+                <div class="console__output"></div>`
+            );
+            key.preventDefault();
+            break;
     }
 }
-
-document.addEventListener("keydown", addSpan, false);
