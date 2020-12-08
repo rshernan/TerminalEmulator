@@ -11,14 +11,16 @@ function addSpan(key) {
             historyCommands.push(
                 document.querySelector(".writed__input").innerHTML
             );
-            document.querySelector("span").insertAdjacentHTML(
+            document.querySelector(".actual").insertAdjacentHTML(
                 "afterend",
                 `
-                <div class="actual__path">../Desktop/MSE/Projects</div>
-                <div class="console__input"><img src="assets/svg/angulo-de-flecha-derecha.svg">
-                  <div class="writed__input"></div>
-                </div>
-                <div class="console__output"></div>`
+                <div class="actual">
+                    <div class="actual__path">../Desktop/MSE/Projects</div>
+                    <div class="console__input"> <span class="simbol__input">&#62;</span>
+                        <input type="text" class="writed__input"></textarea>
+                    </div>
+                    <div class="console__output"></div>
+                </div>`
             );
             key.preventDefault();
             break;

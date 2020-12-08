@@ -1,4 +1,5 @@
 import { addSpan } from "./modules/renders/console_render.js";
+import "../css/style.css";
 var div = document.querySelector(".writed__input");
 
 window.addEventListener("load", function () {
