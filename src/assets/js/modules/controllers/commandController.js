@@ -14,7 +14,7 @@ class CommandController {
                 break;
             case "echo":
                 let echo = new Echo();
-                echo.checkComand(writedLine);
+                echo.executeComand(writedLine);
                 break;
             case "pwd":
                 let pwd = new Pwd();
