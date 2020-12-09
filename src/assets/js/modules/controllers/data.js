@@ -11,9 +11,9 @@ class dataStructure {
       type: "dir",
     };
     if (localStorage.getItem("data")) {
-      //this.getDataFromLocalStorage();
+      this.getDataFromLocalStorage();
     } else {
-      //this.saveDataToLocalStorage();
+      this.saveDataToLocalStorage();
     }
   }
 
@@ -41,7 +41,7 @@ class dataStructure {
           content: {},
           type: "dir",
         };
-        this.updateDateAndLengthOfPath(0);
+        this.updateDateAndLengthOfPath(0, date.toString());
         this.saveDataToLocalStorage();
       } else {
         error = name + " already exist in " + this.pathToString(this.path);
@@ -66,7 +66,7 @@ class dataStructure {
           content: content,
           type: "doc",
         };
-        this.updateDateAndLengthOfPath(content.length);
+        this.updateDateAndLengthOfPath(content.length, date.toString());
         this.saveDataToLocalStorage();
       } else {
         error = name + " already exist in " + this.pathToString(this.path);
@@ -84,9 +84,10 @@ class dataStructure {
     let error = false;
     if (folder) {
       if (folder.content[name]) {
+          let date=new Date();
         let length = folder.content[name].length;
         delete folder.content[name];
-        this.updateDateAndLengthOfPath(length * -1);
+        this.updateDateAndLengthOfPath(length * -1, date.toString());
         this.saveDataToLocalStorage();
       } else {
         error = name + " do not exist in " + this.pathToString(this.path);
@@ -168,17 +169,14 @@ class dataStructure {
     }
   }
 
-  updateDateAndLengthOfPath(len) {
+  updateDateAndLengthOfPath(len, date) {
     let length = this.path.length;
-    console.log('hola?');
-    let date = new Date();
+
     for (let i = 0; i <= length; i++) {
-    console.log(this.path[i]);
       var relativePath = this.path.slice(0, length-i);
       var folder = this.goToPathDirection(relativePath);
 
-      
-      folder.date = date.toString();
+      folder.date = date;
       folder.length += len;
     }
   }
