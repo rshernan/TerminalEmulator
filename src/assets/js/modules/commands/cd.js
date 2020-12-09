@@ -1,6 +1,6 @@
 import { dataStrc } from "../controllers/data.js";
 
-class changeDirectory {
+class cd {
 
     constructor(){
         this.path = dataStrc.path;
@@ -20,5 +20,5 @@ class changeDirectory {
     }
 }
 
-var cd = new changeDirectory();
-export {cd};
+var changeDir = new cd();
+export {changeDir};
