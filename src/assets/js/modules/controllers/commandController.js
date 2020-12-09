@@ -1,6 +1,7 @@
 import { ls } from "../commands/ls.js";
-import { Pwd } from '../commands/pwd.js';
-import {cd } from "../commands/cd.js";
+import { Mkdir } from "../commands/mkdir.js";
+import { Pwd } from "../commands/pwd.js";
+import { cd } from "../commands/cd.js";
 
 class CommandController {
     constructor() {}
@@ -21,6 +22,8 @@ class CommandController {
                 let cdcommand = new cd();
                 break;
             case "mkdir":
+                let mkdir = new Mkdir();
+                mkdir.executeCommand(writedLine);
                 break;
             case "cat":
                 break;
