@@ -1,4 +1,7 @@
 import { ls } from "../commands/ls.js";
+import { Pwd } from '../commands/pwd.js';
+
+const currentPath = document.getElementById('current-path');
 
 class CommandController {
     constructor() {}
@@ -12,6 +15,8 @@ class CommandController {
             case "echo":
                 break;
             case "pwd":
+                let pwd = new Pwd();
+                pwd.showCurrentPath(currentPath);
                 break;
             case "cd":
                 break;
