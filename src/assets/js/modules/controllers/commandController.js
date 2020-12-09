@@ -1,4 +1,5 @@
 import { ls } from "../commands/ls.js";
+import { Pwd } from '../commands/pwd.js';
 
 class CommandController {
     constructor() {}
@@ -12,6 +13,8 @@ class CommandController {
             case "echo":
                 break;
             case "pwd":
+                let pwd = new Pwd();
+                pwd.showCurrentPath();
                 break;
             case "cd":
                 break;
