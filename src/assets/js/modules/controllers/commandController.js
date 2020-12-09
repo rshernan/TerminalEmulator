@@ -1,9 +1,10 @@
 import { ls } from "../commands/ls.js";
+import { Mkdir } from "../commands/mkdir.js";
 
 class CommandController {
     constructor() {}
 
-    selectCommand(writedLine) {
+    selectCommand(writedLine, actualPath) {
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
@@ -16,6 +17,8 @@ class CommandController {
             case "cd":
                 break;
             case "mkdir":
+                let mkdir = new Mkdir();
+                mkdir.executeCommand("", writedLine);
                 break;
             case "cat":
                 break;

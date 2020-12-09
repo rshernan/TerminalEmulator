@@ -37,4 +37,6 @@ body {
     border: none;
     background: none;
     height: 2em;
+    width: 80%;
+    display: inline;
 }
