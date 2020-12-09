@@ -1,4 +1,5 @@
 import { ls } from "../commands/ls.js";
+import {cd} from "../commands/cd.js";
 
 class CommandController {
     constructor() {}
