@@ -71,7 +71,6 @@ class dataStructure {
       } else {
         let date = new Date();
         let lengthBefore = folder.content[name].length;
-        console.log(lengthBefore);
         folder.content[name] = {
           length: content.length,
           date: date.toString(),
