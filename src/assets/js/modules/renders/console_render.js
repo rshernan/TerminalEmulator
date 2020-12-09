@@ -1,4 +1,5 @@
 import { CommandController } from "../controllers/commandController.js";
+import { dataStrc } from "../controllers/data.js";
 
 let writedLine = "";
 let historyCommands = [];
@@ -20,7 +21,10 @@ function addSpan(key) {
                 document.querySelector(".actual .writed__input").value
             );
             //todo check writedLine and actualPath before send it to selectCommand check(writedLine) check(actualPath);
-            commandController.selectCommand(writedLine);
+            commandController.selectCommand(
+                writedLine,
+                dataStrc.pathToString(dataStrc.path)
+            );
 
             document
                 .querySelector(".actual .console__input")

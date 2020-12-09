@@ -18,7 +18,7 @@ class CommandController {
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
-                mkdir.executeCommand("", writedLine);
+                mkdir.executeCommand(actualPath, writedLine);
                 break;
             case "cat":
                 break;
