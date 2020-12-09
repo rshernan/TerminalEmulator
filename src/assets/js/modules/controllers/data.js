@@ -54,7 +54,7 @@ class dataStructure {
 
   createDocument(name, content) {
     //returns a string describing the error
-    // if it has been succesful retrns false
+    // if it has been succesful returns false
     let folder = this.goToPathDirection(this.path);
     let error = false;
     if (folder) {
@@ -69,12 +69,44 @@ class dataStructure {
         this.updateDateAndLengthOfPath(content.length, date.toString());
         this.saveDataToLocalStorage();
       } else {
-        error = name + " already exist in " + this.pathToString(this.path);
+        let date = new Date();
+        let lengthBefore = folder.content[name].length;
+        folder.content[name] = {
+          length: content.length,
+          date: date.toString(),
+          content: content,
+          type: "doc",
+        };
+        this.updateDateAndLengthOfPath(
+          content.length - lengthBefore,
+          date.toString()
+        );
+        this.saveDataToLocalStorage();
       }
     } else {
       error = this.pathToString(this.path) + " path not found";
     }
     return error;
+  }
+
+  addContentToDocument(name, content) {
+    let folder = this.goToPathDirection(this.path);
+    let error = false;
+    if (folder) {
+      document = folder.content[name];
+      if (!document) {
+        createDocument(name, content);
+      } else {
+        let date = new Date();
+        document.content += content;
+        document.date = date.toString();
+        document.length += content.length;
+        this.updateDateAndLengthOfPath(content.length, date.toString());
+        this.saveDataToLocalStorage();
+      }
+    } else {
+      error = this.pathToString(this.path) + " path not found";
+    }
   }
 
   deleteFolderOrDocument(name) {
@@ -84,7 +116,7 @@ class dataStructure {
     let error = false;
     if (folder) {
       if (folder.content[name]) {
-          let date=new Date();
+        let date = new Date();
         let length = folder.content[name].length;
         delete folder.content[name];
         this.updateDateAndLengthOfPath(length * -1, date.toString());
@@ -173,11 +205,23 @@ class dataStructure {
     let length = this.path.length;
 
     for (let i = 0; i <= length; i++) {
-      var relativePath = this.path.slice(0, length-i);
+      var relativePath = this.path.slice(0, length - i);
       var folder = this.goToPathDirection(relativePath);
 
       folder.date = date;
       folder.length += len;
+    }
+  }
+
+  renameDocumentOrFolder(nameBefore, newName) {
+    let actualFolder = this.getDataFromThisPath();
+    if (nameBefore !== newName) {
+      Object.defineProperty(
+        actualFolder,
+        newName,
+        Object.getOwnPropertyDescriptor(actualFolder, nameBefore)
+      );
+      delete actualFolder[nameBefore];
     }
   }
 }
