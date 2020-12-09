@@ -1,5 +1,6 @@
 import { ls } from "../commands/ls.js";
 import { Pwd } from '../commands/pwd.js';
+import {cd } from "../commands/cd.js";
 import { Echo } from '../commands/echo.js';
 
 class CommandController {
@@ -20,6 +21,7 @@ class CommandController {
                 pwd.showCurrentPath();
                 break;
             case "cd":
+                let cdcommand = new cd();
                 break;
             case "mkdir":
                 break;
