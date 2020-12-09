@@ -6,7 +6,7 @@ import { cd } from "../commands/cd.js";
 class CommandController {
     constructor() {}
 
-    selectCommand(writedLine, actualPath) {
+    selectCommand(writedLine) {
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
@@ -23,7 +23,7 @@ class CommandController {
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
-                mkdir.executeCommand(actualPath, writedLine);
+                mkdir.executeCommand(writedLine);
                 break;
             case "cat":
                 break;
