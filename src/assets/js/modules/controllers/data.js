@@ -71,6 +71,7 @@ class dataStructure {
       } else {
         let date = new Date();
         let lengthBefore = folder.content[name].length;
+        console.log(lengthBefore);
         folder.content[name] = {
           length: content.length,
           date: date.toString(),
@@ -93,16 +94,17 @@ class dataStructure {
     let folder = this.goToPathDirection(this.path);
     let error = false;
     if (folder) {
-      document = folder.content[name];
-      if (!document) {
-        createDocument(name, content);
-      } else {
+      let document = folder.content[name];
+      if (document) {
         let date = new Date();
         document.content += content;
         document.date = date.toString();
         document.length += content.length;
         this.updateDateAndLengthOfPath(content.length, date.toString());
         this.saveDataToLocalStorage();
+      } else {
+        createDocument(name, content);
+        
       }
     } else {
       error = this.pathToString(this.path) + " path not found";
@@ -215,14 +217,16 @@ class dataStructure {
 
   renameDocumentOrFolder(nameBefore, newName) {
     let actualFolder = this.getDataFromThisPath();
-    if (nameBefore !== newName) {
-      Object.defineProperty(
-        actualFolder,
-        newName,
-        Object.getOwnPropertyDescriptor(actualFolder, nameBefore)
-      );
-      delete actualFolder[nameBefore];
+    let error= false;
+    if (actualFolder.content[newName]) {
+      actualFolder.content[newName]=actualFolder.content[nameBefore];
+      delete actualFolder.content[nameBefore];
+      let date= new Date();
+      this.updateDateAndLengthOfPath(0,date.toString());
+    }else{
+        error = name + " already exist in " + this.pathToString(this.path); 
     }
+    return error;
   }
 }
 

@@ -14,8 +14,8 @@ console.log(dataStrc.data);
 dataStrc.createFolder('adios');
 dataStrc.openFolderInPath('adios');
 dataStrc.createDocument('suh', 'blabla');
-dataStrc.createDocument('si', 'blabla');
 dataStrc.createDocument('si', 'blablabla');
-dataStrc.addContentToDocument('suh', 'hola');
 dataStrc.renameDocumentOrFolder('si', 'ho');
+dataStrc.addContentToDocument('suh', 'hola');
+console.log(dataStcr.data.content.adios.content.suh.content);
 
