@@ -1,120 +1,165 @@
-export {data, createDocument, createFolder, deleteFolderOrDocument, goToPathDirection, moveDocumentOrFolder};
+export {dataStrc};
 
-var data={}
 
-if (localStorage.getItem('data')){
-    getDataFromLocalStorage();
-}else{
-    saveDataToLocalStorage();
-}
 
-function getDataFromLocalStorage(){
-    let dataJson=localStorage.getItem('data');
-    data= JSON.parse(dataJson);
-}
 
-function saveDataToLocalStorage(){
-    let dataJson=JSON.stringify(data);
-    localStorage.setItem('data', dataJson)
-}
+class dataStructure{
 
-function createFolder(path, name){
-    //returns a string describing the error
-    // if it has been succesful retrns false
-    let folder=goToPathDirection(path);
-    let error=false;
-    if(folder){
-        if(!folder[name]){
-            folder[name]={};
-            saveDataToLocalStorage();
+    constructor(){
+        this.path=[];
+        this.data={}
+        if (localStorage.getItem('data')){
+            this.getDataFromLocalStorage();
         }else{
-            error=name+' already exist in '+pathToString(path);
+            this.saveDataToLocalStorage();
         }
-    }else{
-        error=pathToString(path)+' path not found';
     }
-    return error;
-}
 
-function createDocument(path, name, content){
-    //returns a string describing the error
-    // if it has been succesful retrns false
-    let folder=goToPathDirection(path);
-    let error=false;
-    if(folder){
-        if(!folder[name]){
-            folder[name]=content;
-            saveDataToLocalStorage(); 
+    
+    
+    getDataFromLocalStorage(){
+        let dataJson=localStorage.getItem('data');
+        this.data= JSON.parse(dataJson);
+    }
+    
+    saveDataToLocalStorage(){
+        let dataJson=JSON.stringify(this.data);
+        localStorage.setItem('data', dataJson)
+    }
+    
+    createFolder(name){
+        //returns a string describing the error
+        // if it has been succesful retrns false
+        let folder=this.goToPathDirection(this.path);
+        let error=false;
+        if(folder){
+            if(!folder[name]){
+                let date=new Date()
+                folder[name]={
+                    length: 0,
+                    lastModification: date.toString()
+                };
+                this.saveDataToLocalStorage();
+            }else{
+                error=name+' already exist in '+this.pathToString(this.path);
+            }
         }else{
-            error=name+' already exist in '+pathToString(path);
+            error=this.pathToString(this.path)+' path not found';
         }
-    }else{
-        error=pathToString(path)+' path not found';
+        return error;
     }
-    return error;
-}
-
-function deleteFolderOrDocument(path, name){
-    //returns a string describing the error
-    // if it has been succesful retrns false
-    let folder=goToPathDirection(path);
-    let error=false;
-    if(folder){
-        if(folder[name]){
-            delete folder[name];
-            saveDataToLocalStorage(); 
+    
+    createDocument(name, content){
+        //returns a string describing the error
+        // if it has been succesful retrns false
+        let folder=this.goToPathDirection(this.path);
+        let error=false;
+        if(folder){
+            if(!folder[name]){
+                folder[name]=content;
+                this.saveDataToLocalStorage(); 
+            }else{
+                error=name+' already exist in '+this.pathToString(this.path);
+            }
         }else{
-            error=name+' do not exist in '+pathToString(path);
+            error=this.pathToString(this.path)+' path not found';
         }
-    }else{
-        error=pathToString(path)+' path not found';
+        return error;
     }
-    return error;
-}
-
-function goToPathDirection(path){
-    let folder=data;
-
-    for(let i=0; i<path.length; i++){
-        pathItem=path[i];
-        if(folder[pathItem]){
-            folder=folder[pathItem];
+    
+    deleteFolderOrDocument(name){
+        //returns a string describing the error
+        // if it has been succesful retrns false
+        let folder=this.goToPathDirection(this.path);
+        let error=false;
+        if(folder){
+            if(folder[name]){
+                delete folder[name];
+                this.saveDataToLocalStorage(); 
+            }else{
+                error=name+' do not exist in '+this.pathToString(this.path);
+            }
         }else{
-            folder= false;
-            i=path.length;
+            error=this.pathToString(this.path)+' path not found';
         }
-    };
-
-    return folder;
-}
-
-function moveDocumentOrFolder(actualPath, futurePath, itemName){
-    //returns a string describing the error
-    // if it has been succesful retrns false
-    let actualFolder=goToPathDirection(actualPath);
-    let futureFolder=goToPathDirection(futurePath);
-    let error=false;
-
-    if(actualFolder&&futureFolder){
-        let item= actualFolder[itemName];
-        delete actualFolder[itemName];
-        futureFolder[itemName]=item;
-        saveDataToLocalStorage();
-    }else if(actualFolder){
-        error=pathToString(actualPath)+' path not found';
-    }else{
-        error=pathToString(futurePath)+' path not found';
+        return error;
     }
-    return error;
+    
+    goToPathDirection(path){
+        let folder=this.data;
+    
+        for(let i=0; i<path.length; i++){
+            let pathItem=path[i];
+            if(folder[pathItem]){
+                folder=folder[pathItem];
+            }else{
+                folder= false;
+                i=path.length;
+            }
+        };
+    
+        return folder;
+    }
+
+    getDataFromThisPath(){
+        let folder=this.goToPathDirection(this.path);
+        return folder;
+    }
+    
+    moveDocumentOrFolder(actualPath, futurePath, itemName){
+        //returns a string describing the error
+        // if it has been succesful retrns false
+        let actualFolder=this.goToPathDirection(actualPath);
+        let futureFolder=this.goToPathDirection(futurePath);
+        let error=false;
+    
+        if(actualFolder&&futureFolder){
+            let item= actualFolder[itemName];
+            delete actualFolder[itemName];
+            futureFolder[itemName]=item;
+            this.saveDataToLocalStorage();
+        }else if(actualFolder){
+            error=this.pathToString(futurePath)+' path not found';
+        }else{
+            error=this.pathToString(actualPath)+' path not found';
+        }
+        return error;
+    }
+    
+    
+    pathToString(path){
+        //returns the string with the path
+        let string='';
+    
+        path.forEach(folder=>{
+            string+='/'+folder;
+        })
+        return string;
+    }
+
+    openFolderInPath(folderName){
+        //cd
+        // if foldername exist return false if not return the error
+        let actualFolder=this.getDataFromThisPath();
+        let error=false;
+        if(actualFolder[folderName]){
+            this.path.push(folderName);
+        }else{
+            error=folderName+' do not exist in '+this.pathToString(this.path);
+        }
+        return error;
+    }
+
+    closeFolderInPath(){
+        // cd ..
+        if(this.path.length>0){
+          this.path.pop();  
+        }
+    }
+
+
+
 }
 
+var dataStrc= new dataStructure();
 
-function pathToString(path){
-    //returns the string with the path
-    let string='';
-
-    path.forEach(folder=>{
-        string+='/'+folder;
-    })
-    return string;
-}
