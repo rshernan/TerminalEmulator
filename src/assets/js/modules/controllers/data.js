@@ -1,4 +1,4 @@
-//export {data, createDocument, createFolder, deleteFolderOrDocument, goToPathDirection, moveDocumentOrFolder};
+export {dataStrc};
 
 
 
@@ -34,9 +34,10 @@ class dataStructure{
         let error=false;
         if(folder){
             if(!folder[name]){
+                let date=new Date()
                 folder[name]={
                     length: 0,
-                    lastModification: new Data()
+                    lastModification: date.toString()
                 };
                 this.saveDataToLocalStorage();
             }else{
@@ -137,15 +138,28 @@ class dataStructure{
     }
 
     openFolderInPath(folderName){
+        //cd
+        // if foldername exist return false if not return the error
         let actualFolder=this.getDataFromThisPath();
+        let error=false;
         if(actualFolder[folderName]){
-            
+            this.path.push(folderName);
         }else{
+            error=folderName+' do not exist in '+this.pathToString(this.path);
+        }
+        return error;
+    }
 
+    closeFolderInPath(){
+        // cd ..
+        if(this.path.length>0){
+          this.path.pop();  
         }
     }
 
+
+
 }
 
-var structre= new dataStructure();
+var dataStrc= new dataStructure();
 
