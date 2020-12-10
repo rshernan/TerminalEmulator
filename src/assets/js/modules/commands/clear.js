@@ -2,5 +2,11 @@
 
 class clear {
 
-    constructor(){}
+    constructor(){
+
+    }
+
+    clearConsole(){
+        
+    }
 }

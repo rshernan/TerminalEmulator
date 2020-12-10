@@ -8,22 +8,46 @@ class cat {
     }
 
     showContent(str) {
-        //Falta comprovar que el fichero exista dentro de la carpeta
+
         let error = false;
-        if (str.includes("/")){
-            let pathArray = str.split("/");
+        let short_str = str.slice(4, str.length)
+        
+        if (short_str.includes("/")){
+            let pathArray = short_str.split("/");
             let file_name = pathArray.pop();
-            
             let folder = dataStrc.goToPathDirection(pathArray);
+
             let doc = folder.content[file_name];
 
-            return doc.content;
+            if(doc && doc.type === "doc") {
+                return doc.content;
+            }
+            else if (doc){
+                error = "This is not a file";
+                return error;
+            }
+            else {
+                error = "There is no file with the name " +  file_name;
+                return error;
+            }
+            
 
         }else {
             let folder = dataStrc.getDataFromThisPath();
-            let doc = folder.content[str];
+            let doc = folder.content[short_str];
+            
+            if(doc && doc.type === "doc"){
+                return doc.content;
+            } else if (doc){
+                error = "This is not a file";
+                return error;
+            }
 
-            return doc.content;
+            else {
+                error = "There is no file with the name " +  short_str;
+                return error;
+            }
+            
         }
     }
 }
