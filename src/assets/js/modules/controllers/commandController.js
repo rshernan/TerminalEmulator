@@ -19,6 +19,7 @@ class CommandController {
                 break;
             case "cd":
                 let cdcommand = new cd();
+                cd.chooseCDAction();
                 break;
             case "mkdir":
                 break;

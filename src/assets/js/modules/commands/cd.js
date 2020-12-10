@@ -18,7 +18,14 @@ class cd {
     closeFolder() {
         return dataStrc.closeFolderInPath(this.path);
     }
+
+    chooseCDAction(str) {
+        if (str.includes("..")){
+            this.closeFolder();
+        }else {
+            this.openFolder(str);
+        }
+    }
 }
 
-var changeDir = new cd();
-export {changeDir};
+export {cd};
