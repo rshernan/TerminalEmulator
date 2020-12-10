@@ -1,20 +1,43 @@
 import { CommandController } from "../controllers/commandController.js";
+import { dataStrc } from "../controllers/data.js";
+
 let writedLine = "";
 let historyCommands = [];
+let actualPath = "";
 let commandController = new CommandController();
+
 function addSpan(key) {
     switch (key.keyCode) {
         case 13:
-            writedLine = document.querySelector(".writed__input").value;
+            writedLine = document.querySelector(".actual .writed__input").value;
+            actualPath = document.querySelector(".actual .actual__path")
+                .innerHTML;
             document.querySelector(
-                ".console__output"
-            ).innerHTML = document.querySelector(".writed__input").value;
+                ".actual .console__output"
+            ).innerHTML = document.querySelector(
+                ".actual .writed__input"
+            ).value;
             historyCommands.push(
-                document.querySelector(".writed__input").value
+                document.querySelector(".actual .writed__input").value
             );
-            //todo check writedLine before send it to selectCommand check(writedLine);
-            commandController.selectCommand(writedLine);
+            //todo check writedLine and actualPath before send it to selectCommand check(writedLine) check(actualPath);
+            commandController.selectCommand(
+                writedLine,
+                dataStrc.pathToString(dataStrc.path)
+            );
 
+            document
+                .querySelector(".actual .console__input")
+                .removeChild(
+                    document.querySelector(".actual .console__input")
+                        .lastElementChild
+                );
+            document
+                .querySelector(".actual .simbol__input")
+                .insertAdjacentHTML(
+                    "afterend",
+                    `<div class="writed__input">${writedLine}</div>`
+                );
             document.querySelector(".actual").insertAdjacentHTML(
                 "afterend",
                 `
@@ -26,6 +49,11 @@ function addSpan(key) {
                     <div class="console__output"></div>
                 </div>`
             );
+            document.querySelector(".actual").classList.toggle("actual");
+
+            document
+                .querySelector(".actual .writed__input")
+                .focus({ preventScroll: false });
 
             key.preventDefault();
             break;

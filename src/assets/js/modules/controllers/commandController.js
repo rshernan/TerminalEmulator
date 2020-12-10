@@ -1,6 +1,9 @@
 import { ls } from "../commands/ls.js";
-import { Pwd } from '../commands/pwd.js';
-import {cd } from "../commands/cd.js";
+import { Mkdir } from "../commands/mkdir.js";
+import { Pwd } from "../commands/pwd.js";
+import { cd } from "../commands/cd.js";
+import { Echo } from '../commands/echo.js';
+
 
 class CommandController {
     constructor() {}
@@ -12,6 +15,8 @@ class CommandController {
                 lscommand.executeCommand(writedLine);
                 break;
             case "echo":
+                let echo = new Echo();
+                echo.executeComand(writedLine);
                 break;
             case "pwd":
                 let pwd = new Pwd();
@@ -19,9 +24,11 @@ class CommandController {
                 break;
             case "cd":
                 let cdcommand = new cd();
-                cd.chooseCDAction();
+                cdcommand.chooseCDAction();
                 break;
             case "mkdir":
+                let mkdir = new Mkdir();
+                mkdir.executeCommand(writedLine);
                 break;
             case "cat":
                 break;
