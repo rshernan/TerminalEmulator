@@ -102,7 +102,7 @@ class dataStructure {
             let document = folder.content[name];
             if (document) {
                 let date = new Date();
-                document.content += content;
+                document.content += " " + content;
                 document.date = date.toString();
                 document.length += content.length;
                 this.updateDateAndLengthOfPath(content.length, date.toString());
