@@ -5,6 +5,7 @@ import { cd } from "../commands/cd.js";
 import { Echo } from '../commands/echo.js';
 import { cat } from "../commands/cat.js";
 import { Rm } from '../commands/rm.js';
+import { clear } from "../commands/clear.js";
 
 
 class CommandController {
@@ -43,6 +44,8 @@ class CommandController {
             case "mv":
                 break;
             case "clear":
+                let clearcommand = new clear();
+                clearcommand.clearConsole();
                 break;
             case "help":
                 break;
