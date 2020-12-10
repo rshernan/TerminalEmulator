@@ -6,7 +6,7 @@ import { Echo } from '../commands/echo.js';
 import { cat } from "../commands/cat.js";
 import { Rm } from '../commands/rm.js';
 import { clear } from "../commands/clear.js";
-
+import { Help } from "../commands/help.js";
 
 class CommandController {
     constructor() {}
@@ -15,7 +15,9 @@ class CommandController {
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
-                lscommand.executeCommand(writedLine);
+                document.querySelector(
+                    ".actual>.console__output"
+                ).innerHTML += lscommand.executeCommand(writedLine);
                 break;
             case "echo":
                 let echo = new Echo();
@@ -48,6 +50,13 @@ class CommandController {
                 clearcommand.clearConsole();
                 break;
             case "help":
+                let helpCommand = new Help();
+                document.querySelector(
+                    ".actual>.console__output"
+                ).style.whiteSpace = "pre";
+                document.querySelector(
+                    ".actual>.console__output"
+                ).textContent += helpCommand.print();
                 break;
             case "man":
                 break;

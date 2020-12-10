@@ -2,7 +2,9 @@ import { dataStrc } from '../controllers/data.js';
 
 class Rm {
   executeComand(fileName) {
-    dataStrc.deleteFolderOrDocument(fileName);
+    if (fileName.split(' ')[1]) {
+      dataStrc.deleteFolderOrDocument(fileName.split(' ')[1]);
+    }
   }
 }
 

@@ -6,13 +6,15 @@ class Echo {
     if (comand.includes('>>') && !comand.startsWith('>>')) {
 
       this.name = comand.split('>>')[1].trim();
-      this.content = comand.split('>>')[0].trim();
+      this.content = comand.split('>>')[0].replace('echo', '').trim();
+
       dataStrc.addContentToDocument(this.name, this.content);
 
     } else if (comand.includes('>') && !comand.startsWith('>')) {
 
       this.name = comand.split('>')[1].trim();
-      this.content = comand.split('>')[0].trim();
+      this.content = comand.split('>')[0].replace('echo', '').trim();
+
       dataStrc.createDocument(this.name, this.content);
 
     } else {
