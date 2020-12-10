@@ -159,18 +159,42 @@ class dataStructure {
         return folder;
     }
 
-    moveDocumentOrFolder(actualPath, futurePath, itemName) {
-        //returns a string describing the error
-        // if it has been succesful retrns false
+    moveDocumentOrFolder(actual, future) {
+        let actualPath = actual.split('/');
+        let actualItemName= actualPath.pop();
+        actualPath=this.path.concat(actualPath);
+        let futurePath = future.split('/');
+        let futureItemName= futurePath.pop();
+        futurePath=this.path.concat(futurePath);
+        console.log(actualPath);
+        if(actualPath[0]=='.'){
+            actualPath=actualPath.slice(1,actualPath.length);
+        }
+        if(futurePath[0]=='.'){
+            futurePath=futurePath.slice(1,futurePath.length);
+        }
         let actualFolder = this.goToPathDirection(actualPath);
         let futureFolder = this.goToPathDirection(futurePath);
+
         let error = false;
 
         if (actualFolder && futureFolder) {
-            let item = actualFolder[itemName];
-            delete actualFolder[itemName];
-            futureFolder[itemName] = item;
-            this.saveDataToLocalStorage();
+            if(actualFolder.content[actualItemName]){
+                let content = actualFolder.content[actualItemName].content;
+                let type=actualFolder.content[actualItemName].type
+                let date = new Date();
+                delete actualFolder.content[actualItemName];
+                futureFolder.content[futureItemName] = {
+                    length: content.length,
+                    date: date.toString(),
+                    content: content,
+                    type: type,
+                };
+                this.updateDateAndLengthOfPath(content.length, date.toString());
+                this.saveDataToLocalStorage();
+            }else{
+                error =  actualItemName+ " file not found";
+            }
         } else if (actualFolder) {
             error = this.pathToString(futurePath) + " path not found";
         } else {
