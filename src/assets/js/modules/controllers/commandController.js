@@ -3,6 +3,7 @@ import { Mkdir } from "../commands/mkdir.js";
 import { Pwd } from "../commands/pwd.js";
 import { cd } from "../commands/cd.js";
 import { Echo } from '../commands/echo.js';
+import { Rm } from '../commands/rm.js';
 
 
 class CommandController {
@@ -33,6 +34,8 @@ class CommandController {
             case "cat":
                 break;
             case "rm":
+                let rm = new Rm();
+                rm.executeComand(writedLine);
                 break;
             case "mv":
                 break;
