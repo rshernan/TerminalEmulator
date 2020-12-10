@@ -11,9 +11,3 @@ window.addEventListener("load", function () {
 
 document.addEventListener("keydown", addSpan, false);
 
-
-let cdInstance = new cd();
-let catInstance = new cat();
-dataStrc.createFolder("mainFolder");
-dataStrc.createDocument("mainDocument", "I'm the most important document!");
-dataStrc.createFolder("secondFolder");
