@@ -113,6 +113,7 @@ class dataStructure {
         } else {
             error = this.pathToString(this.path) + " path not found";
         }
+        return error;
     }
 
     deleteFolderOrDocument(name) {
