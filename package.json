@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
-    "start": "webpack serve --open 'firefox'",
+    "start": "webpack serve --open true --port 9000",
     "build": "webpack --mode production"
   },
   "repository": {

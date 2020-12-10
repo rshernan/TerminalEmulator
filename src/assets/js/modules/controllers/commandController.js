@@ -25,7 +25,7 @@ class CommandController {
                 break;
             case "cd":
                 let cdcommand = new cd();
-                cdcommand.chooseCDAction();
+                cdcommand.chooseCDAction(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
@@ -33,7 +33,7 @@ class CommandController {
                 break;
             case "cat":
                 let catcommand = new cat();
-                catcommand.showContent();
+                catcommand.showContent(writedLine);
                 break;
             case "rm":
                 break;

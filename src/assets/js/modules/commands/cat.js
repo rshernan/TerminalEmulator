@@ -1,4 +1,4 @@
-import { dataStrc } from "./modules/controllers/data.js";
+import { dataStrc } from "../controllers/data.js";
 
 class cat {
     //prints the content of a file
@@ -8,14 +8,22 @@ class cat {
     }
 
     showContent(str) {
+        //Falta comprovar que el fichero exista dentro de la carpeta
+        let error = false;
         if (str.includes("/")){
             let pathArray = str.split("/");
+            let file_name = pathArray.pop();
+            
+            let folder = dataStrc.goToPathDirection(pathArray);
+            let doc = folder.content[file_name];
 
-            actual_path = dataStrc.goToPathDirection(pathArray[pathArray.length - 1]);
+            return doc.content;
 
-            return actual_path;
         }else {
-            act_path = dataStrc.goToPathDirection(str);
+            let folder = dataStrc.getDataFromThisPath();
+            let doc = folder.content[str];
+
+            return doc.content;
         }
     }
 }
