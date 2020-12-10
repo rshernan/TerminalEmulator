@@ -9,10 +9,13 @@ class cd {
     openFolder(str) {
         let folderArr = str.split("/");
         let error = false;
+        
+        folderArr[0] = folderArr[0].slice(3, folderArr[0].length);
 
         for (let i=0; i<folderArr.length && error === false; i++){
-            error = dataStrc.openFolderInPath(folderArr[i]);   
+            error = dataStrc.openFolderInPath(folderArr[i]);
         }
+        return error;
     }
 
     closeFolder() {
@@ -20,11 +23,22 @@ class cd {
     }
 
     chooseCDAction(str) {
-        if (str.includes("..")){
-            this.closeFolder();
+        let error = false;
+        if (str === "cd .."){
+            error = this.closeFolder();
+            
         }else {
-            this.openFolder(str);
+            error = this.openFolder(str);
         }
+        
+        if (error !== false){
+            return error;
+        }
+
+        
+        return "";
+        
+        
     }
 }
 
