@@ -102,7 +102,7 @@ class dataStructure {
             let document = folder.content[name];
             if (document) {
                 let date = new Date();
-                document.content += content;
+                document.content += " " + content;
                 document.date = date.toString();
                 document.length += content.length;
                 this.updateDateAndLengthOfPath(content.length, date.toString());
@@ -113,6 +113,7 @@ class dataStructure {
         } else {
             error = this.pathToString(this.path) + " path not found";
         }
+        return error;
     }
 
     deleteFolderOrDocument(name) {
@@ -185,6 +186,7 @@ class dataStructure {
         path.forEach((folder) => {
             string += "/" + folder;
         });
+        if (string=="") string="/";
         return string;
     }
 

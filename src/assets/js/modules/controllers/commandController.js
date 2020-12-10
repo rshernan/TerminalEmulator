@@ -2,9 +2,9 @@ import { ls } from "../commands/ls.js";
 import { Mkdir } from "../commands/mkdir.js";
 import { Pwd } from "../commands/pwd.js";
 import { cd } from "../commands/cd.js";
-import { Echo } from '../commands/echo.js';
-import { cat } from "../commands/cat.js";
-import { Rm } from '../commands/rm.js';
+import { Echo } from "../commands/echo.js";
+import { Rm } from "../commands/rm.js";
+import { Help } from "../commands/help.js";
 
 
 class CommandController {
@@ -14,7 +14,9 @@ class CommandController {
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
-                lscommand.executeCommand(writedLine);
+                document.querySelector(
+                    ".actual>.console__output"
+                ).innerHTML += lscommand.executeCommand(writedLine);
                 break;
             case "echo":
                 let echo = new Echo();
@@ -45,6 +47,13 @@ class CommandController {
             case "clear":
                 break;
             case "help":
+                let helpCommand = new Help();
+                document.querySelector(
+                    ".actual>.console__output"
+                ).style.whiteSpace = "pre";
+                document.querySelector(
+                    ".actual>.console__output"
+                ).textContent += helpCommand.print();
                 break;
             case "man":
                 break;
