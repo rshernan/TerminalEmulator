@@ -11,9 +11,13 @@ class cat {
         if (str.includes("/")){
             let pathArray = str.split("/");
 
-            return dataStrc.getDataFromThisPath(pathArray[pathArray.length - 1]);
+            actual_path = dataStrc.goToPathDirection(pathArray[pathArray.length - 1]);
+
+            return actual_path;
         }else {
-            return(str.content);
+            act_path = dataStrc.goToPathDirection(str);
         }
     }
 }
+
+export {cat};
