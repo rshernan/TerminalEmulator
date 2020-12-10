@@ -232,6 +232,9 @@ class dataStructure {
         // cd ..
         if (this.path.length > 0) {
             this.path.pop();
+            return false;
+        } else {
+            return "You are on the main folder."
         }
     }
 

@@ -6,6 +6,7 @@ import { Echo } from "../commands/echo.js";
 import { Rm } from "../commands/rm.js";
 import { Help } from "../commands/help.js";
 
+
 class CommandController {
     constructor() {}
 
@@ -27,13 +28,15 @@ class CommandController {
                 break;
             case "cd":
                 let cdcommand = new cd();
-                cdcommand.chooseCDAction();
+                cdcommand.chooseCDAction(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
                 mkdir.executeCommand(writedLine);
                 break;
             case "cat":
+                let catcommand = new cat();
+                catcommand.showContent(writedLine);
                 break;
             case "rm":
                 let rm = new Rm();

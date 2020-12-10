@@ -1,4 +1,4 @@
-import { dataStrc } from "./modules/controllers/data.js";
+import { dataStrc } from "../controllers/data.js";
 
 class cat {
     //prints the content of a file
@@ -8,12 +8,48 @@ class cat {
     }
 
     showContent(str) {
-        if (str.includes("/")){
-            let pathArray = str.split("/");
 
-            return dataStrc.getDataFromThisPath(pathArray[pathArray.length - 1]);
+        let error = false;
+        let short_str = str.slice(4, str.length)
+        
+        if (short_str.includes("/")){
+            let pathArray = short_str.split("/");
+            let file_name = pathArray.pop();
+            let folder = dataStrc.goToPathDirection(pathArray);
+
+            let doc = folder.content[file_name];
+
+            if(doc && doc.type === "doc") {
+                return doc.content;
+            }
+            else if (doc){
+                error = "This is not a file";
+                return error;
+            }
+            else {
+                error = "There is no file with the name " +  file_name;
+                return error;
+            }
+            
+
         }else {
-            return(str.content);
+            let folder = dataStrc.getDataFromThisPath();
+            let doc = folder.content[short_str];
+            
+            if(doc && doc.type === "doc"){
+                return doc.content;
+            } else if (doc){
+                error = "This is not a file";
+                return error;
+            }
+
+            else {
+                error = "There is no file with the name " +  short_str;
+                return error;
+            }
+            
         }
     }
 }
+
+export {cat};
