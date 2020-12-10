@@ -13,7 +13,7 @@ class CommandController {
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
-                lscommand.executeCommand(writedLine);
+                document.querySelector(".actual>.console__output").innerHTML+=lscommand.executeCommand(writedLine);
                 break;
             case "echo":
                 let echo = new Echo();

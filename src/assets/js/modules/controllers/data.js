@@ -186,6 +186,7 @@ class dataStructure {
         path.forEach((folder) => {
             string += "/" + folder;
         });
+        if (string=="") string="/";
         return string;
     }
 
