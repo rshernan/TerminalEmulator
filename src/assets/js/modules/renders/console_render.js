@@ -37,7 +37,7 @@ function addSpan(key) {
                 <div class="actual">
                     <div class="actual__path">../Desktop/MSE/Projects</div>
                     <div class="console__input"> <span class="simbol__input">&#62;</span>
-                        <input type="text" class="writed__input"></textarea>
+                        <input type="text" class="writed__input"></input>
                     </div>
                     <div class="console__output"></div>
                 </div>`
