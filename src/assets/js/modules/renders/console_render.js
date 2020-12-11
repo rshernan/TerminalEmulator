@@ -1,3 +1,4 @@
+import { autoComplete } from "../commands/tab.js";
 import { CommandController } from "../controllers/commandController.js";
 import { dataStrc } from "../controllers/data.js";
 
@@ -51,6 +52,10 @@ function addSpan(key) {
                 ".actual .actual__path"
             ).innerHTML = dataStrc.pathToString(dataStrc.path);
 
+            key.preventDefault();
+            break;
+        case 9:
+            autoComplete();
             key.preventDefault();
             break;
     }
