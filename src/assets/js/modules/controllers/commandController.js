@@ -40,7 +40,7 @@ class CommandController {
                 break;
             case "cat":
                 let catcommand = new cat();
-                catcommand.showContent(writedLine);
+                output = catcommand.showContent(writedLine);
                 break;
             case "rm":
                 let rm = new Rm();
