@@ -5,6 +5,7 @@ import { cd } from "../commands/cd.js";
 import { Echo } from "../commands/echo.js";
 import { Rm } from "../commands/rm.js";
 import { Help } from "../commands/help.js";
+import { Mv } from "../commands/mv.js";
 
 class CommandController {
     constructor() {}
@@ -40,6 +41,13 @@ class CommandController {
                 rm.executeComand(writedLine);
                 break;
             case "mv":
+                let mv = new Mv();
+                let error=mv.executeComand(writedLine);
+                if(error){
+                    document.querySelector(
+                        ".actual>.console__output"
+                    ).textContent = error;
+                }
                 break;
             case "clear":
                 break;
