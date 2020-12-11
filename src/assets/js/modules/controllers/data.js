@@ -71,7 +71,11 @@ class dataStructure {
           content: content,
           type: "doc",
         };
-        this.updateDateAndLengthOfPath(content.length, date.toString(), this.path);
+        this.updateDateAndLengthOfPath(
+          content.length,
+          date.toString(),
+          this.path
+        );
         this.saveDataToLocalStorage();
       } else {
         let date = new Date();
@@ -105,7 +109,11 @@ class dataStructure {
         document.content += " " + content;
         document.date = date.toString();
         document.length += content.length;
-        this.updateDateAndLengthOfPath(content.length, date.toString(), this.path);
+        this.updateDateAndLengthOfPath(
+          content.length,
+          date.toString(),
+          this.path
+        );
         this.saveDataToLocalStorage();
       } else {
         createDocument(name, content);
@@ -158,24 +166,22 @@ class dataStructure {
     return folder;
   }
 
-  goToPathDirectionFromActualPath(relativePath) {
+  getGlobalPathFromActualPath(relativePath) {
     let absolutePath = [];
     if (relativePath.length > 0 && relativePath[0] === "..") {
       absolutePath = [...this.path];
       while (relativePath.length > 0 && relativePath[0] === "..") {
-        console.log(relativePath);
         relativePath = relativePath.slice(1, relativePath.length);
         absolutePath.pop();
       }
       absolutePath = absolutePath.concat(relativePath);
-      console.log(absolutePath);
     } else {
       if (relativePath[0] === ".") {
         relativePath = relativePath.slice(1, relativePath.length);
       }
       absolutePath = this.path.concat(relativePath);
     }
-    return this.goToPathDirection(absolutePath);
+    return absolutePath;
   }
 
   moveDocumentOrFolder(actual, future) {
@@ -185,8 +191,11 @@ class dataStructure {
     let futurePath = future.split("/");
     let futureItemName = futurePath.pop();
 
-    let actualFolder = this.goToPathDirectionFromActualPath(actualPath);
-    let futureFolder = this.goToPathDirectionFromActualPath(futurePath);
+    actualPath = this.getGlobalPathFromActualPath(actualPath);
+    let actualFolder =this.goToPathDirection(actualPath);
+
+    futurePath = this.getGlobalPathFromActualPath(futurePath);
+    let futureFolder=this.goToPathDirection(futurePath);
 
     let error = false;
 
@@ -221,9 +230,23 @@ class dataStructure {
             type: type,
           };
         }
-        this.updateDateAndLengthOfPath(-1*content.length, date.toString(), actualPath);
-        this.updateDateAndLengthOfPath(content.length, date.toString(), futurePath);
+        console.log('1');
+        this.updateDateAndLengthOfPath(
+          -1 * content.length,
+          date.toString(),
+          actualPath
+        );
+        console.log(content.length);
+        console.log(date.toString());
+        console.log(futurePath);
+        this.updateDateAndLengthOfPath(
+          content.length,
+          date.toString(),
+          futurePath
+        );
+        console.log('3');
         this.saveDataToLocalStorage();
+        console.log('4');
       } else {
         error = actualItemName + " file not found";
       }
@@ -232,6 +255,7 @@ class dataStructure {
     } else {
       error = this.pathToString(actualPath) + " path not found";
     }
+    console.log(error);
     return error;
   }
 
@@ -259,16 +283,16 @@ class dataStructure {
     return error;
   }
 
-    closeFolderInPath() {
-        // cd ..
-        if (this.path.length > 0) {
-            this.path.pop();
-            return false;
-        } else {
-            return "You are on the main folder.";
-        }
+  closeFolderInPath() {
+    // cd ..
+    if (this.path.length > 0) {
+      this.path.pop();
+      return false;
+    } else {
+      return "You are on the main folder.";
     }
   }
+
 
   updateDateAndLengthOfPath(len, date, path) {
     let length = path.length;
@@ -280,20 +304,6 @@ class dataStructure {
       folder.date = date;
       folder.length += len;
     }
-  }
-
-  renameDocumentOrFolder(nameBefore, newName) {
-    let actualFolder = this.getDataFromThisPath();
-    let error = false;
-    if (actualFolder.content[newName]) {
-      actualFolder.content[newName] = actualFolder.content[nameBefore];
-      delete actualFolder.content[nameBefore];
-      let date = new Date();
-      this.updateDateAndLengthOfPath(0, date.toString(), this.path);
-    } else {
-      error = name + " already exist in " + this.pathToString(this.path);
-    }
-    return error;
   }
 }
 
