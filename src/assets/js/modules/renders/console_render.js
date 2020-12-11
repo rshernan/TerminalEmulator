@@ -1,3 +1,4 @@
+import { autoComplete } from "../commands/tab.js";
 import { CommandController } from "../controllers/commandController.js";
 import { dataStrc } from "../controllers/data.js";
 
@@ -36,7 +37,7 @@ function addSpan(key) {
                 <div class="actual">
                     <div class="actual__path">../Desktop/MSE/Projects</div>
                     <div class="console__input"> <span class="simbol__input">&#62;</span>
-                        <input type="text" class="writed__input"></textarea>
+                        <input type="text" class="writed__input"></input>
                     </div>
                     <div class="console__output"></div>
                 </div>`
@@ -51,6 +52,10 @@ function addSpan(key) {
                 ".actual .actual__path"
             ).innerHTML = dataStrc.pathToString(dataStrc.path);
 
+            key.preventDefault();
+            break;
+        case 9:
+            autoComplete();
             key.preventDefault();
             break;
     }
