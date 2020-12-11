@@ -46,8 +46,13 @@ class CommandController {
                 rm.executeComand(writedLine);
                 break;
             case "mv":
-                let commandMv = new Mv();
-                commandMv.executeComand(writedLine);
+                let mv = new Mv();
+                let error=mv.executeComand(writedLine);
+                if(error){
+                    document.querySelector(
+                        ".actual>.console__output"
+                    ).textContent = error;
+                }
                 break;
             case "clear":
                 let clearcommand = new clear();
