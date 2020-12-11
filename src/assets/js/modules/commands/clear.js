@@ -1,4 +1,4 @@
-import { dataStrc } from "../controllers/data.js";
+import { addSpan } from "../renders/console_render";
 
 class clear {
 
@@ -6,16 +6,24 @@ class clear {
 
     }
 
-    clearConsole(){
-        //location.reload();
-        document.querySelector("body").innerHTML = 
+    clearConsole(str){
+        let error=false;
+        if(str === "clear"){
+            document.querySelector("body").innerHTML = 
             `<div class="actual">
                 <div class="actual__path">../Desktop/MSE/Projects</div>
                     <div class="console__input"> <span class="simbol__input">&#62;</span>
                         <input type="text" class="writed__input"></input>
                     </div>
-                <div class="console__output"></div>
-            </div>`
+            </div>`;
+            
+            
+        } else {
+            error = "There is no such command.";
+            console.log(error);
+            return error;
+        }
+        
     }
 }
 export {clear}
