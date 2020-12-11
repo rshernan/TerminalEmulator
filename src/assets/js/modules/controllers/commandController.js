@@ -14,6 +14,7 @@ class CommandController {
     constructor() {}
 
     selectCommand(writedLine) {
+        let output=false;
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
@@ -23,19 +24,19 @@ class CommandController {
                 break;
             case "echo":
                 let echo = new Echo();
-                echo.executeComand(writedLine);
+                output=echo.executeComand(writedLine);
                 break;
             case "pwd":
                 let pwd = new Pwd();
-                pwd.showCurrentPath();
+                output=pwd.showCurrentPath();
                 break;
             case "cd":
                 let cdcommand = new cd();
-                cdcommand.chooseCDAction(writedLine);
+                output=cdcommand.chooseCDAction(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
-                mkdir.executeCommand(writedLine);
+                output=mkdir.executeCommand(writedLine);
                 break;
             case "cat":
                 let catcommand = new cat();
@@ -43,16 +44,11 @@ class CommandController {
                 break;
             case "rm":
                 let rm = new Rm();
-                rm.executeComand(writedLine);
+                output=rm.executeComand(writedLine);
                 break;
             case "mv":
                 let mv = new Mv();
-                let error=mv.executeComand(writedLine);
-                if(error){
-                    document.querySelector(
-                        ".actual>.console__output"
-                    ).textContent = error;
-                }
+                output=mv.executeComand(writedLine);
                 break;
             case "clear":
                 let clearcommand = new clear();
@@ -73,9 +69,14 @@ class CommandController {
                 break;
             case "touch":
                 let touch = new Touch();
-                touch.executeComand(writedLine);
+                output=touch.executeComand(writedLine);
             default:
                 console.log("command not found");
+        }
+        if(output){
+            document.querySelector(
+                ".actual>.console__output"
+            ).textContent = output;
         }
     }
 

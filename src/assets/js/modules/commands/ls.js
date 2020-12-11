@@ -30,7 +30,7 @@ class ls{
                     output=this.showParentsAndChilds(dataStrc.path)
                     break;
                 default:
-                    error='<br>'+splitedCommand[1];
+                    error=splitedCommand[1];
 
             }
             console.log(output);
