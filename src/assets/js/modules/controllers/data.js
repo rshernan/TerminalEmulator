@@ -259,10 +259,14 @@ class dataStructure {
     return error;
   }
 
-  closeFolderInPath() {
-    // cd ..
-    if (this.path.length > 0) {
-      this.path.pop();
+    closeFolderInPath() {
+        // cd ..
+        if (this.path.length > 0) {
+            this.path.pop();
+            return false;
+        } else {
+            return "You are on the main folder.";
+        }
     }
   }
 

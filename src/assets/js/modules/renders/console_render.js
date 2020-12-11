@@ -3,20 +3,12 @@ import { dataStrc } from "../controllers/data.js";
 
 let writedLine = "";
 let historyCommands = [];
-let actualPath = "";
 let commandController = new CommandController();
 
 function addSpan(key) {
     switch (key.keyCode) {
         case 13:
             writedLine = document.querySelector(".actual .writed__input").value;
-            actualPath = document.querySelector(".actual .actual__path")
-                .innerHTML;
-            document.querySelector(
-                ".actual .console__output"
-            ).innerHTML = document.querySelector(
-                ".actual .writed__input"
-            ).value;
             historyCommands.push(
                 document.querySelector(".actual .writed__input").value
             );
@@ -54,6 +46,10 @@ function addSpan(key) {
             document
                 .querySelector(".actual .writed__input")
                 .focus({ preventScroll: false });
+
+            document.querySelector(
+                ".actual .actual__path"
+            ).innerHTML = dataStrc.pathToString(dataStrc.path);
 
             key.preventDefault();
             break;

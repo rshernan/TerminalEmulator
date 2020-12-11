@@ -3,7 +3,9 @@ import { Mkdir } from "../commands/mkdir.js";
 import { Pwd } from "../commands/pwd.js";
 import { cd } from "../commands/cd.js";
 import { Echo } from "../commands/echo.js";
+import { cat } from "../commands/cat.js";
 import { Rm } from "../commands/rm.js";
+import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
 
@@ -28,13 +30,15 @@ class CommandController {
                 break;
             case "cd":
                 let cdcommand = new cd();
-                cdcommand.chooseCDAction();
+                cdcommand.chooseCDAction(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
                 mkdir.executeCommand(writedLine);
                 break;
             case "cat":
+                let catcommand = new cat();
+                catcommand.showContent(writedLine);
                 break;
             case "rm":
                 let rm = new Rm();
@@ -50,6 +54,8 @@ class CommandController {
                 }
                 break;
             case "clear":
+                let clearcommand = new clear();
+                clearcommand.clearConsole();
                 break;
             case "help":
                 let helpCommand = new Help();
