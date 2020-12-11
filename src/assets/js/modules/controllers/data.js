@@ -160,18 +160,20 @@ class dataStructure {
     }
 
     moveDocumentOrFolder(actual, future) {
-        let actualPath = actual.split('/');
-        let actualItemName= actualPath.pop();
-        actualPath=this.path.concat(actualPath);
-        let futurePath = future.split('/');
-        let futureItemName= futurePath.pop();
-        futurePath=this.path.concat(futurePath);
+        console.log(actual);
+        console.log(future);
+        let actualPath = actual.split("/");
+        let actualItemName = actualPath.pop();
+        actualPath = this.path.concat(actualPath);
+        let futurePath = future.split("/");
+        let futureItemName = futurePath.pop();
+        futurePath = this.path.concat(futurePath);
         console.log(actualPath);
-        if(actualPath[0]=='.'){
-            actualPath=actualPath.slice(1,actualPath.length);
+        if (actualPath[0] == ".") {
+            actualPath = actualPath.slice(1, actualPath.length);
         }
-        if(futurePath[0]=='.'){
-            futurePath=futurePath.slice(1,futurePath.length);
+        if (futurePath[0] == ".") {
+            futurePath = futurePath.slice(1, futurePath.length);
         }
         let actualFolder = this.goToPathDirection(actualPath);
         let futureFolder = this.goToPathDirection(futurePath);
@@ -179,9 +181,9 @@ class dataStructure {
         let error = false;
 
         if (actualFolder && futureFolder) {
-            if(actualFolder.content[actualItemName]){
+            if (actualFolder.content[actualItemName]) {
                 let content = actualFolder.content[actualItemName].content;
-                let type=actualFolder.content[actualItemName].type
+                let type = actualFolder.content[actualItemName].type;
                 let date = new Date();
                 delete actualFolder.content[actualItemName];
                 futureFolder.content[futureItemName] = {
@@ -192,8 +194,8 @@ class dataStructure {
                 };
                 this.updateDateAndLengthOfPath(content.length, date.toString());
                 this.saveDataToLocalStorage();
-            }else{
-                error =  actualItemName+ " file not found";
+            } else {
+                error = actualItemName + " file not found";
             }
         } else if (actualFolder) {
             error = this.pathToString(futurePath) + " path not found";
@@ -210,7 +212,7 @@ class dataStructure {
         path.forEach((folder) => {
             string += "/" + folder;
         });
-        if (string=="") string="/";
+        if (string == "") string = "/";
         return string;
     }
 
@@ -234,7 +236,7 @@ class dataStructure {
             this.path.pop();
             return false;
         } else {
-            return "You are on the main folder."
+            return "You are on the main folder.";
         }
     }
 

@@ -2,11 +2,12 @@ import { ls } from "../commands/ls.js";
 import { Mkdir } from "../commands/mkdir.js";
 import { Pwd } from "../commands/pwd.js";
 import { cd } from "../commands/cd.js";
-import { Echo } from '../commands/echo.js';
+import { Echo } from "../commands/echo.js";
 import { cat } from "../commands/cat.js";
-import { Rm } from '../commands/rm.js';
+import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
+import { Mv } from "../commands/mv.js";
 
 class CommandController {
     constructor() {}
@@ -44,6 +45,8 @@ class CommandController {
                 rm.executeComand(writedLine);
                 break;
             case "mv":
+                let commandMv = new Mv();
+                commandMv.executeComand(writedLine);
                 break;
             case "clear":
                 let clearcommand = new clear();

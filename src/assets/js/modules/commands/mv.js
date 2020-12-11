@@ -4,7 +4,9 @@ class Mv {
     executeComand(fileName) {
         let commandArray = fileName.split(" ");
         if (commandArray.length === 3) {
-            dataStrc.moveDocumentOrFolder();
+            console.log(commandArray[1]);
+            console.log(commandArray[2]);
+            dataStrc.moveDocumentOrFolder(commandArray[1], commandArray[2]);
         }
     }
 }
