@@ -8,6 +8,7 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
+import { Touch } from '../commands/touch.js';
 
 class CommandController {
     constructor() {}
@@ -70,6 +71,9 @@ class CommandController {
                 break;
             case "JS":
                 break;
+            case "touch":
+                let touch = new Touch();
+                touch.executeComand(writedLine);
             default:
                 console.log("command not found");
         }
