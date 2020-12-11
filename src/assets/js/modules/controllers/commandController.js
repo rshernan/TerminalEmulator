@@ -47,7 +47,7 @@ class CommandController {
                 break;
             case "clear":
                 let clearcommand = new clear();
-                clearcommand.clearConsole();
+                clearcommand.clearConsole(writedLine);
                 break;
             case "help":
                 let helpCommand = new Help();

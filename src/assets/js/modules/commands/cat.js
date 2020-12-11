@@ -7,6 +7,10 @@ class cat {
         this.path = dataStrc.path;
     }
 
+    showOnConsole(param){
+        document.querySelector(".actual").getElementsByClassName("console__output")[0].innerHTML = param;
+        return param;
+    }
     showContent(str) {
 
         let error = false;
@@ -20,7 +24,7 @@ class cat {
             let doc = folder.content[file_name];
 
             if(doc && doc.type === "doc") {
-                return doc.content;
+                this.showOnConsole(doc_content);
             }
             else if (doc){
                 error = "This is not a file";
@@ -37,7 +41,8 @@ class cat {
             let doc = folder.content[short_str];
             
             if(doc && doc.type === "doc"){
-                return doc.content;
+                this.showOnConsole(doc.content);
+
             } else if (doc){
                 error = "This is not a file";
                 return error;
