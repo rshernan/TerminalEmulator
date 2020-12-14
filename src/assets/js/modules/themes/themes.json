@@ -18,5 +18,20 @@
         "text":"#f1f1f1",
         "background":"#1f1f1f",
         "path":"#f1f1f1"
+    },
+    "pink": {
+        "text":"#cb2d6f",
+        "background":"#0f292f",
+        "path":"#14a098"
+    },
+    "inovate": {
+        "text":"#ff652f",
+        "background":"#272727",
+        "path":"#ffe400"
+    },
+    "peace": {
+        "text":"#66fcf1",
+        "background":"#0b0c10",
+        "path":"#45a29e"
     }
 }
