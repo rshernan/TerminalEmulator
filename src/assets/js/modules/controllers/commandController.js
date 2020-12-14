@@ -11,6 +11,7 @@ import { Mv } from "../commands/mv.js";
 import { JS } from '../commands/JS.js';
 import { Touch } from "../commands/touch.js";
 import { Man } from "../commands/man.js";
+import { ChangeColor } from "../commands/changeColor.js";
 
 class CommandController {
     constructor() {}
@@ -82,6 +83,12 @@ class CommandController {
             case "touch":
                 let touch = new Touch();
                 output = touch.executeComand(writedLine);
+                break;
+            case "color":
+                console.log(writedLine);
+                let changeColor = new ChangeColor();
+                changeColor.execute(writedLine);
+                break;
             default:
                 console.log("command not found");
         }
