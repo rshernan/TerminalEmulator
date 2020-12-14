@@ -1,0 +1,22 @@
+{
+    "retrowave": {
+        "text":"#ffd319",
+        "background":"#b000ff",
+        "path":"#ff901f"
+    },
+    "matrix":{
+        "text":"#00ff41",
+        "background":"#0d0208",
+        "path":"#008f11"
+    },
+    "light":{
+        "text":"#1f1f1f",
+        "background":"#f1f1f1",
+        "path":"#1f1f1f"
+    },
+    "dark":{
+        "text":"#f1f1f1",
+        "background":"#1f1f1f",
+        "path":"#f1f1f1"
+    }
+}
