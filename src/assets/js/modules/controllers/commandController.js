@@ -8,12 +8,13 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
-import { JS } from '../commands/JS.js';
+import { JS } from "../commands/JS.js";
 import { Touch } from "../commands/touch.js";
 import { Man } from "../commands/man.js";
 import { ChangeColor } from "../commands/changeColor.js";
 import { theme } from "../commands/changeTheme.js";
-import {historic} from "../controllers/history.js"
+import { changeBackgroundImage } from "../commands/changeBackgroundImage.js";
+import { historic } from "../controllers/history.js";
 
 class CommandController {
     constructor() {}
@@ -30,22 +31,22 @@ class CommandController {
                 break;
             case "echo":
                 let echo = new Echo();
-                output=echo.executeComand(writedLine);
+                output = echo.executeComand(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "pwd":
                 let pwd = new Pwd();
-                output=pwd.showCurrentPath();
+                output = pwd.showCurrentPath();
                 historic.getCommandsHistory(writedLine);
                 break;
             case "cd":
                 let cdcommand = new cd();
-                output=cdcommand.chooseCDAction(writedLine);
+                output = cdcommand.chooseCDAction(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
-                output=mkdir.executeCommand(writedLine);
+                output = mkdir.executeCommand(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "cat":
@@ -55,12 +56,12 @@ class CommandController {
                 break;
             case "rm":
                 let rm = new Rm();
-                output=rm.executeComand(writedLine);
+                output = rm.executeComand(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "mv":
                 let mv = new Mv();
-                output=mv.executeComand(writedLine);
+                output = mv.executeComand(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "clear":
@@ -90,8 +91,8 @@ class CommandController {
                 historic.getCommandsHistory(writedLine);
                 break;
             case "JS":
-                let jsCommand= new JS();
-                output =jsCommand.executeCommand(writedLine);
+                let jsCommand = new JS();
+                output = jsCommand.executeCommand(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "touch":
@@ -105,8 +106,11 @@ class CommandController {
                 historic.getCommandsHistory(writedLine);
                 break;
             case "theme":
-
                 theme.execute(writedLine);
+                historic.getCommandsHistory(writedLine);
+                break;
+            case "image":
+                changeBackgroundImage.execute(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             default:

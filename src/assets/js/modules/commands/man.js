@@ -8,6 +8,7 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
+import { changeBackgroundImage } from "../commands/changeBackgroundImage.js";
 
 class Man {
     executeCommand(writedLine) {
@@ -58,8 +59,11 @@ class Man {
                 case "JS":
                     //let Js = new JS();
                     break;
+                case "image":
+                    return changeBackgroundImage.man();
+                    break;
                 default:
-                    console.log("command not found");
+                    return "command not found";
             }
         } else {
             console.log("command error");
