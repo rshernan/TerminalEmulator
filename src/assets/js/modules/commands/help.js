@@ -14,6 +14,19 @@ clear clear the console`;
         console.log(help);
         return help;
     }
+
+    man() {
+        return `
+NAME
+        help shows the command of the terminal.
+ 
+ SYNOPSIS
+        help
+ 
+ DESCRIPTION
+        Shows command which can be used on the terminal.
+        `;
+    }
 }
 
 export { Help };
