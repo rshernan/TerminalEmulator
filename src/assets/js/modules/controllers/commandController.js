@@ -8,6 +8,7 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
+import { JS } from '../commands/JS.js';
 import { Touch } from "../commands/touch.js";
 import { Man } from "../commands/man.js";
 import { ChangeColor } from "../commands/changeColor.js";
@@ -77,6 +78,8 @@ class CommandController {
                 ).textContent += manCommand.executeCommand(writedLine);
                 break;
             case "JS":
+                let jsCommand= new JS();
+                output =jsCommand.executeCommand(writedLine);
                 break;
             case "touch":
                 let touch = new Touch();
