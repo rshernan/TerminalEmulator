@@ -13,6 +13,7 @@ import { Touch } from "../commands/touch.js";
 import { Man } from "../commands/man.js";
 import { ChangeColor } from "../commands/changeColor.js";
 import { theme } from "../commands/changeTheme.js";
+import {historic} from "../controllers/history.js"
 
 class CommandController {
     constructor() {}

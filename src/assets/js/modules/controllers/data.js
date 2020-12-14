@@ -34,9 +34,7 @@ class dataStructure {
     let folder = this.goToPathDirection(this.path);
     let error = false;
     if (folder) {
-      console.log(folder);
       if (!folder.content[name]) {
-        console.log(name);
         let date = new Date();
         folder.content[name] = {
           length: 0,
@@ -236,23 +234,17 @@ class dataStructure {
             type: type,
           };
         }
-        console.log("1");
         this.updateDateAndLengthOfPath(
           -1 * content.length,
           date.toString(),
           actualPath
         );
-        console.log(content.length);
-        console.log(date.toString());
-        console.log(futurePath);
         this.updateDateAndLengthOfPath(
           content.length,
           date.toString(),
           futurePath
         );
-        console.log("3");
         this.saveDataToLocalStorage();
-        console.log("4");
       } else {
         error = actualItemName + " file not found";
       }
@@ -261,7 +253,6 @@ class dataStructure {
     } else {
       error = this.pathToString(actualPath) + " path not found";
     }
-    console.log(error);
     return error;
   }
 
