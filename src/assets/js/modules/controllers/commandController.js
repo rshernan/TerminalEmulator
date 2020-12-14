@@ -8,14 +8,17 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
-import { Touch } from '../commands/touch.js';
-import { historic } from "../controllers/history.js";
+import { JS } from '../commands/JS.js';
+import { Touch } from "../commands/touch.js";
+import { Man } from "../commands/man.js";
+import { ChangeColor } from "../commands/changeColor.js";
+import { ChangeTheme } from "../commands/changeTheme.js";
 
 class CommandController {
     constructor() {}
 
     selectCommand(writedLine) {
-        let output=false;
+        let output = false;
         switch (this.getCommand(writedLine)) {
             case "ls":
                 let lscommand = new ls();
@@ -75,17 +78,40 @@ class CommandController {
                 historic.getCommandsHistory(writedLine);
                 break;
             case "man":
+                let manCommand = new Man();
+                console.log(manCommand.executeCommand(writedLine));
+                document.querySelector(
+                    ".actual>.console__output"
+                ).style.whiteSpace = "pre";
+                document.querySelector(
+                    ".actual>.console__output"
+                ).textContent += manCommand.executeCommand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "JS":
+                let jsCommand= new JS();
+                output =jsCommand.executeCommand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "touch":
                 let touch = new Touch();
-                output=touch.executeComand(writedLine);
+                output = touch.executeComand(writedLine);
                 historic.getCommandsHistory(writedLine);
+                break;
+            case "color":
+                let changeColor = new ChangeColor();
+                changeColor.execute(writedLine);
+                historic.getCommandsHistory(writedLine);
+                break;
+            case "theme":
+                let changeTheme = new ChangeTheme();
+                changeTheme.execute(writedLine);
+                historic.getCommandsHistory(writedLine);
+                break;
             default:
                 console.log("command not found");
         }
-        if(output){
+        if (output) {
             document.querySelector(
                 ".actual>.console__output"
             ).textContent = output;
