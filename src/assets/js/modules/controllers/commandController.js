@@ -9,6 +9,7 @@ import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
 import { Touch } from '../commands/touch.js';
+import { historic } from "../controllers/history.js";
 
 class CommandController {
     constructor() {}
@@ -21,38 +22,47 @@ class CommandController {
                 document.querySelector(
                     ".actual>.console__output"
                 ).innerHTML += lscommand.executeCommand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "echo":
                 let echo = new Echo();
                 output=echo.executeComand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "pwd":
                 let pwd = new Pwd();
                 output=pwd.showCurrentPath();
+                historic.getCommandsHistory(writedLine);
                 break;
             case "cd":
                 let cdcommand = new cd();
                 output=cdcommand.chooseCDAction(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "mkdir":
                 let mkdir = new Mkdir();
                 output=mkdir.executeCommand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "cat":
                 let catcommand = new cat();
                 output = catcommand.showContent(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "rm":
                 let rm = new Rm();
                 output=rm.executeComand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "mv":
                 let mv = new Mv();
                 output=mv.executeComand(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "clear":
                 let clearcommand = new clear();
                 clearcommand.clearConsole(writedLine);
+                historic.getCommandsHistory(writedLine);
                 break;
             case "help":
                 let helpCommand = new Help();
@@ -62,6 +72,7 @@ class CommandController {
                 document.querySelector(
                     ".actual>.console__output"
                 ).textContent += helpCommand.print();
+                historic.getCommandsHistory(writedLine);
                 break;
             case "man":
                 break;
@@ -70,6 +81,7 @@ class CommandController {
             case "touch":
                 let touch = new Touch();
                 output=touch.executeComand(writedLine);
+                historic.getCommandsHistory(writedLine);
             default:
                 console.log("command not found");
         }
