@@ -13,3 +13,5 @@ document.querySelector(".actual__path").innerHTML = dataStrc.pathToString(
 );
 
 document.addEventListener("keydown", addSpan, false);
+
+//document.addEventListener('keyup', removeCtrlPressed, false);
