@@ -8,7 +8,8 @@ import { Rm } from "../commands/rm.js";
 import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
-import { Touch } from '../commands/touch.js';
+import { Touch } from "../commands/touch.js";
+import { Man } from "../commands/man.js";
 
 class CommandController {
     constructor() {}
@@ -47,8 +48,8 @@ class CommandController {
                 break;
             case "mv":
                 let mv = new Mv();
-                let error=mv.executeComand(writedLine);
-                if(error){
+                let error = mv.executeComand(writedLine);
+                if (error) {
                     document.querySelector(
                         ".actual>.console__output"
                     ).textContent = error;
@@ -68,6 +69,14 @@ class CommandController {
                 ).textContent += helpCommand.print();
                 break;
             case "man":
+                let manCommand = new Man();
+                console.log(manCommand.executeCommand(writedLine));
+                document.querySelector(
+                    ".actual>.console__output"
+                ).style.whiteSpace = "pre";
+                document.querySelector(
+                    ".actual>.console__output"
+                ).textContent += manCommand.executeCommand(writedLine);
                 break;
             case "JS":
                 break;

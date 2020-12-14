@@ -17,6 +17,19 @@ class Mkdir {
         console.log("others");
         return !/[^a-zA-Z0-9\-]/.test(name);
     }
+
+    man() {
+        return `
+        NAME
+            mkdir - make directories
+
+        SYNOPSIS
+            mkdir DIRECTORY...
+
+        DESCRIPTION
+            Create the DIRECTORY(ies), if they do not already exist.
+        `;
+    }
 }
 
 export { Mkdir };
