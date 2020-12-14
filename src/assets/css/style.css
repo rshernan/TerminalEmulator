@@ -38,6 +38,11 @@ body {
     height: 2em;
 }
 
+.console__output {
+    font-size: var(--size-text);
+    color: var(--color-text);
+}
+
 .writed__input {
     font-size: var(--size-text);
     color: var(--color-text);
