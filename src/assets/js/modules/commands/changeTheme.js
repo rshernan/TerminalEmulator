@@ -19,72 +19,17 @@ class ChangeTheme {
 
     setTheme(theme){
         let root = document.documentElement;
-        switch (theme) {
-            case "dark":
-                this.theme="dark";
-                root.style.setProperty("--color-text", themes.dark.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.dark.background
-                );
-                root.style.setProperty("--color-path", themes.dark.path);
-                break;
-            case "light":
-                this.theme="light";
-                root.style.setProperty("--color-text", themes.light.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.light.background
-                );
-                root.style.setProperty("--color-path", themes.light.path);
-                break;
-            case "matrix":
-                this.theme="matrix";
-                root.style.setProperty("--color-text", themes.matrix.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.matrix.background
-                );
-                root.style.setProperty("--color-path", themes.matrix.path);
-                break;
-            case "retrowave":
-                this.theme="retrowave";
-                root.style.setProperty("--color-text", themes.retrowave.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.retrowave.background
-                );
-                root.style.setProperty("--color-path", themes.retrowave.path);
-                break;
-            case "pink":
-                this.theme="pink";
-                root.style.setProperty("--color-text", themes.pink.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.pink.background
-                );
-                root.style.setProperty("--color-path", themes.pink.path);
-                break;
-            case "inovate":
-                this.theme="inovate";
-                root.style.setProperty("--color-text", themes.inovate.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.inovate.background
-                );
-                root.style.setProperty("--color-path", themes.inovate.path);
-                break;
-            case "peace":
-                this.theme="peace";
-                root.style.setProperty("--color-text", themes.peace.text);
-                root.style.setProperty(
-                    "--color-background",
-                    themes.peace.background
-                );
-                root.style.setProperty("--color-path", themes.peace.path);
-                break;
-            default:
-                console.log("invalid parameter");
+        let themesNames=Object.keys(themes);
+        if(themesNames.includes(theme)){
+            this.theme=theme;
+            root.style.setProperty("--color-text", themes[theme].text);
+            root.style.setProperty(
+                "--color-background",
+                themes[theme].background
+            );
+            root.style.setProperty("--color-path", themes[theme].path);
+        }else{
+            console.log("invalid parameter");
         }
         this.saveTheme();
     }
