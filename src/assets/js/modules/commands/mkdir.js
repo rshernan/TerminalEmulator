@@ -2,9 +2,17 @@ import { dataStrc } from "../controllers/data.js";
 
 class Mkdir {
     executeCommand(writedLine) {
-        if (this.validate(writedLine.split(" ")[1])) {
-            dataStrc.createFolder(writedLine.split(" ")[1]);
+        let error = false;
+        if (writedLine.split(" ")[1]) {
+            if (this.validate(writedLine.split(" ")[1])) {
+                error = dataStrc.createFolder(writedLine.split(" ")[1]);
+            } else {
+                error = "File name format isn't correct";
+            }
+        } else {
+            error = "File name needed.";
         }
+        return error;
     }
 
     validate(name) {
@@ -20,15 +28,15 @@ class Mkdir {
 
     man() {
         return `
-        NAME
-            mkdir - make directories
+    NAME
+        mkdir - make directories
 
-        SYNOPSIS
-            mkdir DIRECTORY...
+    SYNOPSIS
+        mkdir DIRECTORY...
 
-        DESCRIPTION
-            Create the DIRECTORY(ies), if they do not already exist.
-        `;
+    DESCRIPTION
+        Create the DIRECTORY(ies), if they do not already exist.
+    `;
     }
 }
 
