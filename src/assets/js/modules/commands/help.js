@@ -10,7 +10,9 @@ echo display a line of text
 cat display content of a file
 rm remove directory
 mv move directory or file (can rename it to)
-clear clear the console`;
+clear clear the console
+color change color in the terminal
+theme apply a default theme in the terminal`;
         console.log(help);
         return help;
     }

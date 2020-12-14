@@ -49,6 +49,17 @@ class ChangeColor {
         image.style.color = stringToTest;
         return image.style.color !== "rgb(255, 255, 255)";
     }
+
+    man() {
+        return `
+NAME
+    color
+SYNOPSIS
+    color [text, path, background] hexcode || cssStringColor
+DESCRIPTION
+    change color to the color writed for the specified part of the terminal writed.
+        `;
+    }
 }
 
 export { ChangeColor };
