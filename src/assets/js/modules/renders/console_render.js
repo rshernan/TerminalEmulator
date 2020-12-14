@@ -1,6 +1,8 @@
 import { autoComplete } from "../commands/tab.js";
 import { CommandController } from "../controllers/commandController.js";
 import { dataStrc } from "../controllers/data.js";
+import { historic } from "../controllers/history.js";
+
 
 let writedLine = "";
 let historyCommands = [];
@@ -55,6 +57,14 @@ function addSpan(key) {
       autoComplete();
       key.preventDefault();
       break;
+     case 38:
+            historic.getPreviousCommand();
+            break;
+
+        //arrow-down
+    case 40:
+        historic.getNextCommand();
+        break;
     case 17:
       ctrlPressed = true;
       key.preventDefault();
