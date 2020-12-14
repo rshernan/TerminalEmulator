@@ -12,8 +12,8 @@ rm remove directory
 mv move directory or file (can rename it to)
 clear clear the console
 color change color in the terminal
-theme apply a default theme in the terminal`;
-        console.log(help);
+theme apply a default theme in the terminal
+image set image as background man image for more information`;
         return help;
     }
 
