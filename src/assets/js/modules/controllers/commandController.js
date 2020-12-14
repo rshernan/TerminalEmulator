@@ -9,6 +9,7 @@ import { clear } from "../commands/clear.js";
 import { Help } from "../commands/help.js";
 import { Mv } from "../commands/mv.js";
 import { Touch } from '../commands/touch.js';
+import { JS } from '../commands/JS.js';
 
 class CommandController {
     constructor() {}
@@ -66,6 +67,8 @@ class CommandController {
             case "man":
                 break;
             case "JS":
+                let jsCommand= new JS();
+                output =jsCommand.executeCommand(writedLine);
                 break;
             case "touch":
                 let touch = new Touch();
