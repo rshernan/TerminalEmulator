@@ -12,6 +12,7 @@ import { JS } from '../commands/JS.js';
 import { Touch } from "../commands/touch.js";
 import { Man } from "../commands/man.js";
 import { ChangeColor } from "../commands/changeColor.js";
+import { ChangeTheme } from "../commands/changeTheme.js";
 
 class CommandController {
     constructor() {}
@@ -85,9 +86,12 @@ class CommandController {
                 output = touch.executeComand(writedLine);
                 break;
             case "color":
-                console.log(writedLine);
                 let changeColor = new ChangeColor();
                 changeColor.execute(writedLine);
+                break;
+            case "theme":
+                let changeTheme = new ChangeTheme();
+                changeTheme.execute(writedLine);
                 break;
             default:
                 console.log("command not found");
