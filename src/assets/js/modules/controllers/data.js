@@ -100,12 +100,12 @@ class dataStructure {
   }
 
   addContentToDocument(name, content) {
-    let folder = this.goToPathDirection(this.path);
+    let folder = this.getDataFromThisPath();
     let error = false;
+    let date = new Date();
     if (folder) {
       let document = folder.content[name];
       if (document) {
-        let date = new Date();
         document.content += " " + content;
         document.date = date.toString();
         document.length += content.length;
@@ -116,7 +116,7 @@ class dataStructure {
         );
         this.saveDataToLocalStorage();
       } else {
-        createDocument(name, content);
+        this.createDocument(name, content);
       }
     } else {
       error = this.pathToString(this.path) + " path not found";
@@ -147,7 +147,6 @@ class dataStructure {
 
   goToPathDirection(path) {
     let folder = this.data;
-
     for (let i = 0; i < path.length; i++) {
       let pathItem = path[i];
       if (folder.content[pathItem]) {
@@ -190,12 +189,19 @@ class dataStructure {
 
     let futurePath = future.split("/");
     let futureItemName = futurePath.pop();
+    if (
+      futureItemName == "" ||
+      futureItemName == " " ||
+      futureItemName == ".."
+    ) {
+      futureItemName = actualItemName;
+    }
 
     actualPath = this.getGlobalPathFromActualPath(actualPath);
-    let actualFolder =this.goToPathDirection(actualPath);
+    let actualFolder = this.goToPathDirection(actualPath);
 
     futurePath = this.getGlobalPathFromActualPath(futurePath);
-    let futureFolder=this.goToPathDirection(futurePath);
+    let futureFolder = this.goToPathDirection(futurePath);
 
     let error = false;
 
@@ -230,7 +236,7 @@ class dataStructure {
             type: type,
           };
         }
-        console.log('1');
+        console.log("1");
         this.updateDateAndLengthOfPath(
           -1 * content.length,
           date.toString(),
@@ -244,9 +250,9 @@ class dataStructure {
           date.toString(),
           futurePath
         );
-        console.log('3');
+        console.log("3");
         this.saveDataToLocalStorage();
-        console.log('4');
+        console.log("4");
       } else {
         error = actualItemName + " file not found";
       }
@@ -276,7 +282,11 @@ class dataStructure {
     let actualFolder = this.getDataFromThisPath();
     let error = false;
     if (actualFolder.content[folderName]) {
-      this.path.push(folderName);
+      if (actualFolder.content[folderName].type === "dir") {
+        this.path.push(folderName);
+      } else {
+        error = folderName + " isn't a folder or directory.";
+      }
     } else {
       error = folderName + " do not exist in " + this.pathToString(this.path);
     }
@@ -292,7 +302,6 @@ class dataStructure {
       return "You are on the main folder.";
     }
   }
-
 
   updateDateAndLengthOfPath(len, date, path) {
     let length = path.length;
