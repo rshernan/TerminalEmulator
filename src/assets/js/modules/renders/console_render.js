@@ -1,6 +1,8 @@
 import { autoComplete } from "../commands/tab.js";
 import { CommandController } from "../controllers/commandController.js";
 import { dataStrc } from "../controllers/data.js";
+import { historic } from "../controllers/history.js";
+
 
 let writedLine = "";
 let historyCommands = [];
@@ -10,6 +12,7 @@ function addSpan(key) {
     switch (key.keyCode) {
         case 13:
             writedLine = document.querySelector(".actual .writed__input").value;
+            console.log(writedLine);
             historyCommands.push(
                 document.querySelector(".actual .writed__input").value
             );
@@ -18,7 +21,7 @@ function addSpan(key) {
                 writedLine,
                 dataStrc.pathToString(dataStrc.path)
             );
-
+          
             document
                 .querySelector(".actual .console__input")
                 .removeChild(
@@ -57,6 +60,15 @@ function addSpan(key) {
         case 9:
             autoComplete();
             key.preventDefault();
+            break;
+        //arrow-up
+        case 38:
+            historic.getPreviousCommand();
+            break;
+
+        //arrow-down
+        case 40:
+            historic.getNextCommand();
             break;
     }
 }

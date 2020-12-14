@@ -7,6 +7,7 @@ class cd {
 
     openFolder(str) {
         let folderArr = str.split("/");
+        folderArr=dataStrc.getGlobalPathFromActualPath(folderArr);
         let error = false;
 
         folderArr[0] = folderArr[0].slice(3, folderArr[0].length);
