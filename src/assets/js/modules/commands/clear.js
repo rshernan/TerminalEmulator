@@ -1,8 +1,6 @@
 import { dataStrc } from "../controllers/data.js";
 
 class clear {
-    constructor() {}
-
     constructor(){
 
     }

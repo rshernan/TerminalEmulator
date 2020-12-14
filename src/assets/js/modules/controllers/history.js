@@ -39,7 +39,6 @@ class Historic {
         if (this.n > 1){
             this.n --;
             this.changeCommand();
-            console.log("next")
         }
         else if (this.n === 1){
             this.n--
@@ -50,7 +49,6 @@ class Historic {
         if (this.n < this.historyArray.length){
             this.n ++;
             this.changeCommand();
-            console.log("previous")
         }
     }
 }

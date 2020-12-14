@@ -6,11 +6,15 @@ class cd {
     }
 
     openFolder(str) {
-        let folderArr = str.split("/");
+        let relativePath=str.split(" ");
+        let folderArr = relativePath[1].split("/");
+        if(folderArr[folderArr.length-1]===''){
+            folderArr.pop();
+        }
         folderArr=dataStrc.getGlobalPathFromActualPath(folderArr);
         let error = false;
 
-        folderArr[0] = folderArr[0].slice(3, folderArr[0].length);
+        //folderArr[0] = folderArr[0].slice(3, folderArr[0].length);
 
         for (let i = 0; i < folderArr.length && error === false; i++) {
             error = dataStrc.openFolderInPath(folderArr[i]);
