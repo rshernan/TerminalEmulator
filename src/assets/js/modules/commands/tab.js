@@ -20,13 +20,13 @@ function autoComplete() {
       let filteredArray = arrayFromFile.filter(el => el.startsWith(filter));
 
       if (filteredArray.length > 1) {
-        let getFirstMatch = filteredArray[0];
-        autoComplete = filter = getFirstMatch;
-        document.querySelector("input.writed__input").value = `${currentInput}/${autoComplete}`;
+        let filteredResult = filteredArray.join(' ');
+        document.querySelector(".actual>.console__output").innerText = filteredResult;
       } else if (filteredArray.length === 1) {
         let arrayToString = filteredArray.join();
         autoComplete = filter = arrayToString;
         document.querySelector("input.writed__input").value = `${currentInput}/${autoComplete}`;
+        document.querySelector(".actual>.console__output").innerText = '';
       } else {
         return input;
       }
@@ -40,13 +40,13 @@ function autoComplete() {
     let foundedFiles = arrayFromFiles.filter(el => el.startsWith(filter));
 
     if (foundedFiles.length > 1) {
-      let getFirstMatch = foundedFiles[0];
-      autoComplete = filter = getFirstMatch;
-      document.querySelector("input.writed__input").value = `${currentInput} ${autoComplete}`;
+      let filteredResult = foundedFiles.join(' ');
+      document.querySelector(".actual>.console__output").innerText = filteredResult;
     } else if (foundedFiles.length === 1) {
       let arrayToString = foundedFiles.join();
       autoComplete = filter = arrayToString;
       document.querySelector("input.writed__input").value = `${currentInput} ${autoComplete}`;
+      document.querySelector(".actual>.console__output").innerText = '';
     } else {
       return input;
     }
