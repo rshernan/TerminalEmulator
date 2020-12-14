@@ -3,8 +3,6 @@ import { addSpan } from "../renders/console_render";
 class clear {
     constructor() {}
 
-    constructor() {}
-
     clearConsole(str) {
         let error = false;
         if (str === "clear") {
