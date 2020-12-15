@@ -84,12 +84,15 @@ function addSpan(key) {
         let input = "cd ";
         let dataInFolder=dataStrc.getDataFromThisPath();
         let cont = dataInFolder.content;
-        let names = Object.keys(cont);
-        console.log(cont[names[0]].type);
+        let folders =false;
 
-        let folders = names.filter(name => cont[name].type == "dir");
-        
-        if (folders) {
+        if(cont){
+          let names = Object.keys(cont);
+          if(names){
+            folders = names.filter(name => cont[name].type == "dir");
+          }
+        }
+        if (folders && folders.length>0) {
           input += folders[0];
           commandController.selectCommand(input);
           document.querySelector(
