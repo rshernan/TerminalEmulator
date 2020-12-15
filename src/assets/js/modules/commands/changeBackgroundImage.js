@@ -25,6 +25,9 @@ class ChangeBackgroundImage {
                 }
             }
         } else {
+            if (opacity === undefined || opacity === null) {
+                root.style.setProperty("--opacity", 1);
+            }
             if (image === "none") {
                 if (opacity === "0") {
                     root.style.setProperty("--opacity", 0);
