@@ -28,12 +28,12 @@ body {
 
 body:after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: var(--color-background);
     opacity: var(--opacity);
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     z-index: -1;
 }
