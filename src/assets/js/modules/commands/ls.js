@@ -31,7 +31,6 @@ class ls {
                 default:
                     error = splitedCommand[1];
             }
-            console.log(output);
             if (error === false && output == "") {
                 output = this.createOutput(folderData);
             } else if (output == "") {

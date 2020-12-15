@@ -5,13 +5,10 @@ class ChangeBackgroundImage {
         let opacity = command.split(" ")[2];
         let root = document.documentElement;
         let numberOpacity = 0;
-        console.log(command);
         if (image === "none") {
             root.style.setProperty("--image", image);
         } else {
-            console.log("not none");
             if (image != "same") {
-                console.log("not same");
                 root.style.setProperty("--image", `url(${image})`);
             }
         }
@@ -35,7 +32,6 @@ class ChangeBackgroundImage {
                     root.style.setProperty("--opacity", 1);
                 }
             } else {
-                console.log(opacity);
                 if (opacity === "0") {
                     root.style.setProperty("--opacity", 1);
                 } else {
