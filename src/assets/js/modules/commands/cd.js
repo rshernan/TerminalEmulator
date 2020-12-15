@@ -6,9 +6,8 @@ class cd {
     }
 
     openFolder(str) {
-        let relativePath=str.split(" ");
+        let relativePath = str.split(" ");
         let folderArr = relativePath[1].split("/");
-        //folderArr=dataStrc.getGlobalPathFromActualPath(folderArr);
         if(folderArr[folderArr.length-1]===''){
             folderArr.pop();
         }
@@ -43,7 +42,16 @@ class cd {
 
     man() {
         return `
-        no manual entry for cd
+        BUILTIN(1)                BSD General Commands Manual               BUILTIN(1)
+ 
+NAME
+     cd
+ 
+SYNOPSIS
+     cd [directory ...]
+ 
+DESCRIPTION
+     changes the directory to the route introduced
         `;
     }
 }
