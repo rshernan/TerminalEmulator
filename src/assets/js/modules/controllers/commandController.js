@@ -101,19 +101,19 @@ class CommandController {
                 break;
             case "color":
                 let changeColor = new ChangeColor();
-                changeColor.execute(writedLine);
+                output=changeColor.execute(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "theme":
-                theme.execute(writedLine);
+                output=theme.execute(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             case "image":
-                changeBackgroundImage.execute(writedLine);
+                output=changeBackgroundImage.execute(writedLine);
                 historic.getCommandsHistory(writedLine);
                 break;
             default:
-                return "command not found";
+                output="Command not found";
         }
         if (output) {
             document.querySelector(

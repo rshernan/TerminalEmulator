@@ -13,7 +13,7 @@ class ChangeTheme {
 
     execute(command) {
         let theme = command.split(" ")[1];
-        this.setTheme(theme);
+        return this.setTheme(theme);
     }
 
     setTheme(theme) {
