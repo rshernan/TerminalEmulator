@@ -26,6 +26,7 @@ class Historic {
     getCommandsHistory(str){
         this.historyArray.push(str);
         this.saveHistoryToLocalStorage();
+        this.n=0;
     }
 
     changeCommand(){

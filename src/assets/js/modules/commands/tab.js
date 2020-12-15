@@ -22,9 +22,10 @@ function autoComplete() {
       let globalPath = dataStrc.getGlobalPathFromActualPath(currentPath)
       let fileInFolder = dataStrc.goToPathDirection(globalPath);
 
-      if (fileInFolder) {
+      if (fileInFolder && typeof fileInFolder.content=='object') {
         let arrayFromFile = Object.keys(fileInFolder.content);
         let filteredArray = arrayFromFile.filter(el => el.startsWith(filter));
+        
 
         if (filteredArray.length > 1) {
           let filteredResult = filteredArray.join(' ');

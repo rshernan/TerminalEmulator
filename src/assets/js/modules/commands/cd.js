@@ -8,10 +8,10 @@ class cd {
     openFolder(str) {
         let relativePath=str.split(" ");
         let folderArr = relativePath[1].split("/");
+        //folderArr=dataStrc.getGlobalPathFromActualPath(folderArr);
         if(folderArr[folderArr.length-1]===''){
             folderArr.pop();
         }
-        folderArr=dataStrc.getGlobalPathFromActualPath(folderArr);
         let error = false;
 
         //folderArr[0] = folderArr[0].slice(3, folderArr[0].length);

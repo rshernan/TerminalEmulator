@@ -78,7 +78,6 @@ function addSpan(key) {
           ".actual .actual__path"
         ).innerHTML = dataStrc.pathToString(dataStrc.path);
       }
-      key.preventDefault();
       break;
     case 39:
       if (ctrlPressed) {
@@ -103,7 +102,6 @@ function addSpan(key) {
 }
 
 function removeCtrlPressed(key) {
-  console.log(key.keyCode);
   if (key.keyCode == 17) {
     ctrlPressed = false;
   }

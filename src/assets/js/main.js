@@ -1,4 +1,4 @@
-import { addSpan } from "./modules/renders/console_render.js";
+import { addSpan, removeCtrlPressed } from "./modules/renders/console_render.js";
 import { dataStrc } from "./modules/controllers/data.js";
 import "../css/style.css";
 
@@ -14,4 +14,4 @@ document.querySelector(".actual__path").innerHTML = dataStrc.pathToString(
 
 document.addEventListener("keydown", addSpan, false);
 
-//document.addEventListener('keyup', removeCtrlPressed, false);
+document.addEventListener('keyup', removeCtrlPressed, false);

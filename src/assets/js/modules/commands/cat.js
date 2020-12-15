@@ -19,6 +19,9 @@ class cat {
             let pathArray = short_str.split("/");
             pathArray = dataStrc.getGlobalPathFromActualPath(pathArray);
             let file_name = pathArray.pop();
+            if(file_name===' ' || file_name==='' ){
+                file_name = pathArray.pop();
+            }
             let folder = dataStrc.goToPathDirection(pathArray);
 
             let doc = folder.content[file_name];
