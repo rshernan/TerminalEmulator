@@ -18,17 +18,17 @@ class ChangeTheme {
 
     setTheme(theme) {
         let root = document.documentElement;
-        let themesNames=Object.keys(themes);
-        if(themesNames.includes(theme)){
-            this.theme=theme;
+        let themesNames = Object.keys(themes);
+        if (themesNames.includes(theme)) {
+            this.theme = theme;
             root.style.setProperty("--color-text", themes[theme].text);
             root.style.setProperty(
                 "--color-background",
                 themes[theme].background
             );
             root.style.setProperty("--color-path", themes[theme].path);
-        }else{
-            console.log("invalid parameter");
+        } else {
+            return "invalid parameter";
         }
         this.saveTheme();
     }

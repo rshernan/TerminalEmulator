@@ -66,7 +66,7 @@ class Man {
                     return "command not found";
             }
         } else {
-            console.log("command error");
+            return "command error";
         }
     }
 

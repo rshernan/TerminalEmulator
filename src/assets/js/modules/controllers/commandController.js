@@ -81,7 +81,6 @@ class CommandController {
                 break;
             case "man":
                 let manCommand = new Man();
-                console.log(manCommand.executeCommand(writedLine));
                 document.querySelector(
                     ".actual>.console__output"
                 ).style.whiteSpace = "pre";
@@ -114,7 +113,7 @@ class CommandController {
                 historic.getCommandsHistory(writedLine);
                 break;
             default:
-                console.log("command not found");
+                return "command not found";
         }
         if (output) {
             document.querySelector(

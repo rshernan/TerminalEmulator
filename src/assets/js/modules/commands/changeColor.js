@@ -2,12 +2,9 @@ class ChangeColor {
     constructor() {}
 
     execute(command) {
-        console.log(command);
         let root = document.documentElement;
         let variable = command.split(" ")[1];
         let color = command.split(" ")[2];
-        console.log(variable);
-        console.log(color);
         if (this.validColour(color)) {
             switch (variable) {
                 case "text":
@@ -20,10 +17,10 @@ class ChangeColor {
                     root.style.setProperty("--color-background", color);
                     break;
                 default:
-                    console.log("invalid parameter");
+                    return "not valid parameter";
             }
         } else {
-            console.log("invalid color");
+            return "format color not valid";
         }
     }
 
